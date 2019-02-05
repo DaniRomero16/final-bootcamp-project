@@ -1,40 +1,43 @@
 // Import libraries
 import React, { Component } from 'react';
+import { BrowserRouter, NavLink, Route } from 'react-router-dom';
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+// Color theme for Material components
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#282b2f',
+    },
+    secondary: {
+      main: '#242543',
+    },
+    text: {
+      primary: '#FFFFFF',
+    },
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
 // Import global resources
-import { logo } from '@Assets';
-import { Text } from '@Components';
+import { NavBar } from '@Components';
+import { FrontPage } from '@Routes';
 
 // Import local resources
 import styles from './router.styles.css';
 
 ///////////// Component ////////////////
 export class Router extends Component {
-  handdleStore = () => {
-    console.log('Click ver store');
-  };
-
-  handdleDispatch = () => {
-    console.log('Click Lanzar accion');
-  };
-
   render() {
     return (
-      <div className={styles.container}>
-        <img src={logo} className={styles.image} />
-        <h1 className={styles.title}>Bootcamp CodeSpace - Redux</h1>
-        <div className={styles.subContainer}>
-          <a onClick={this.handdleStore} className={styles.button}>
-            Ver el Store
-          </a>
-          <a onClick={this.handdleDispatch} className={styles.button}>
-            Lanzar Acción
-          </a>
-        </div>
-        <div className={styles.text}>
-          <Text />
-        </div>
-      </div>
+      <BrowserRouter>
+        <MuiThemeProvider theme={theme}>
+          <NavBar />
+          <Route exact path="/" component={FrontPage} />
+        </MuiThemeProvider>
+      </BrowserRouter>
     );
   }
 }

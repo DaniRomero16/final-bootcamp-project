@@ -1,12 +1,11 @@
-@import 'reset';
+.logo {
+  margin-top: 120px;
+}
 
-body {
+.container {
   display: flex;
-  width: 100vw;
-  height: 100vh;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  background-color: #282b2f;
 }

@@ -1,2 +1,3 @@
-export * from './text';
-export * from './button';
+export * from './NavBar'
+export * from './Header'
+export * from './Info'
