@@ -9,8 +9,12 @@ export class Header extends PureComponent {
     return (
       <div className={styles.container}>
         <img className={styles.logo} src={logo} />
-        <Typography variant="h4">Online personal tools and diary</Typography>
-        <Typography variant="button">Start your personal development</Typography>
+        <Typography variant="h4" color="secondary">
+          Online personal <b>tools</b> and <b>diary</b>
+        </Typography>
+        <Typography color="secondary" variant="button">
+          Start your personal development
+        </Typography>
       </div>
     );
   }

@@ -11,10 +11,7 @@ const theme = createMuiTheme({
       main: '#282b2f',
     },
     secondary: {
-      main: '#242543',
-    },
-    text: {
-      primary: '#FFFFFF',
+      main: '#ffffff',
     },
   },
   typography: {
@@ -23,7 +20,7 @@ const theme = createMuiTheme({
 });
 // Import global resources
 import { NavBar } from '@Components';
-import { FrontPage } from '@Routes';
+import { FrontPage, Login } from '@Routes';
 
 // Import local resources
 import styles from './router.styles.css';
@@ -36,6 +33,7 @@ export class Router extends Component {
         <MuiThemeProvider theme={theme}>
           <NavBar />
           <Route exact path="/" component={FrontPage} />
+          <Route exact path="/login" component={Login} />
         </MuiThemeProvider>
       </BrowserRouter>
     );
