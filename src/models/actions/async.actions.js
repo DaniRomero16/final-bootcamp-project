@@ -8,6 +8,7 @@ const registerUserError = payload => ({
 });
 
 export const registerUser = (user) => dispatch => {
+  console.log(user)
   fetch('http://localhost:3001/users/register', user)
     .then(res => res.json())
     .then(data => {

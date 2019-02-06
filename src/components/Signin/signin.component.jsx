@@ -17,12 +17,12 @@ export class SignIn extends PureComponent {
     console.log(this.props);
     return (
       <MDBContainer className="mt-5">
-        <MDBRow center>
-          <MDBCol md="6">
-            <MDBCard>
+        <MDBRow center className="mt-5">
+          <MDBCol md="6" className="mt-5">
+            <MDBCard className="mt-5">
               <MDBCardBody>
-                <MDBCardHeader className="form-header deep-blue-gradient rounded">
-                  <h3 className="my-3">
+                <MDBCardHeader className="form-header my-3 deep-blue-gradient rounded">
+                  <h3 className="my-3 text-center white-text">
                     <MDBIcon icon="lock" /> Login:
                   </h3>
                 </MDBCardHeader>
@@ -31,13 +31,13 @@ export class SignIn extends PureComponent {
                 </label>
                 <input type="email" id="defaultFormEmailEx" className="form-control" />
 
-                <label htmlFor="defaultFormPasswordEx" className="grey-text font-weight-light">
+                <label htmlFor="defaultFormPasswordEx" className="mt-2 grey-text font-weight-light">
                   Your password
                 </label>
                 <input type="password" id="defaultFormPasswordEx" className="form-control" />
 
                 <div className="text-center mt-4">
-                  <MDBBtn color="deep-orange" className="mb-3" type="submit">
+                  <MDBBtn color="purple" className="mb-3">
                     Login
                   </MDBBtn>
                 </div>

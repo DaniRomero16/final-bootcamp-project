@@ -1,8 +1,20 @@
 import React, { PureComponent } from 'react';
 import styles from './signup.styles.css';
-import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody } from 'mdbreact';
+import { connect } from 'react-redux';
+import { registerUser } from '@Models';
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBInput,
+  MDBBtn,
+  MDBCard,
+  MDBCardBody,
+  MDBCardHeader,
+  MDBIcon,
+} from 'mdbreact';
 
-export class SignUp extends PureComponent {
+class SignUp extends PureComponent {
   state = {
     email: '',
     email2: '',
@@ -68,30 +80,40 @@ export class SignUp extends PureComponent {
     return error.length === 0 ? '' : 'has-error';
   }
 
+  handleSubmit() {
+    this.props.register({
+      email: this.state.email,
+      password: this.state.password,
+      username: this.state.username,
+    });
+  }
+
   render() {
     return (
       <MDBContainer className="mt-5">
-        <MDBRow center>
-          <MDBCol lg="6" md="8" sm="12">
-            <MDBCard>
+        <MDBRow center className="mt-5">
+          <MDBCol lg="6" md="8" sm="12" className="mt-5">
+            <MDBCard className="mt-5">
               <MDBCardBody>
                 <form>
-                  <p className="h4 text-center py-4">Sign up</p>
+                  <MDBCardHeader className="form-header my-3 deep-blue-gradient rounded">
+                    <h3 className="my-3 text-center white-text">
+                      <MDBIcon icon="sign-in-alt" /> Sign Up:
+                    </h3>
+                  </MDBCardHeader>
                   <div className="grey-text">
                     <MDBInput
                       label="Your name"
                       icon="user"
                       group
                       type="text"
-                      validate
-                      error="wrong"
-                      success="right"
                       onChange={this.handleChange('username')}
                       value={this.state.username}
                     />
                     <MDBInput
                       label="Your email"
                       icon="envelope"
+                      className="my-2"
                       group
                       type="text"
                       value={this.state.email}
@@ -108,6 +130,7 @@ export class SignUp extends PureComponent {
                     <MDBInput
                       label="Your password"
                       icon="lock"
+                      className="my-2"
                       group
                       type="password"
                       value={this.state.password}
@@ -128,7 +151,10 @@ export class SignUp extends PureComponent {
                     </div>
                   </div>
                   <div className="text-center py-4 mt-3">
-                    <MDBBtn disabled={!this.state.formValid} color="cyan">
+                    <MDBBtn
+                      disabled={!this.state.formValid}
+                      color="cyan"
+                      onClick={this.handleSubmit}>
                       Register
                     </MDBBtn>
                     <span className="blue-text m-3">Already signed?</span>
@@ -145,3 +171,18 @@ export class SignUp extends PureComponent {
     );
   }
 }
+
+const mapStateToProps = (state, props) => {
+  return {
+    ...props,
+  };
+};
+
+const mapDispatchToProps = () => {
+  register: registerUser;
+};
+
+export const ConnectedSignUp = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignUp);

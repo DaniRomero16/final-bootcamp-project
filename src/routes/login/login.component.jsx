@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import styles from './login.styles.css';
 
-import { SignUp, SignIn } from '@Components';
+import { SignIn, ConnectedSignUp } from '@Components';
 
 export class Login extends Component {
   state = {
@@ -17,8 +17,6 @@ export class Login extends Component {
   };
 
   prevStep = () => {
-    console.log('dfgdgf');
-
     const { step } = this.state;
 
     this.setState({
@@ -29,12 +27,11 @@ export class Login extends Component {
   render() {
     switch (this.state.step) {
       case 1:
-        return <SignUp nextStep={this.nextStep} />;
+        return <ConnectedSignUp nextStep={this.nextStep} />;
         break;
       case 2:
         return <SignIn prevStep={this.prevStep} />;
         break;
-
       default:
         return <div />;
         break;
