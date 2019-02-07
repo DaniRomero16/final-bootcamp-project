@@ -4,13 +4,11 @@ USE mindnote;
 
 CREATE TABLE user (
     user_id int auto_increment,
+    name VARCHAR(35) NOT NULL,
+    surname VARCHAR(45) NOT NULL,
     username VARCHAR(25) NOT NULL unique,
     email varchar(50) not null unique,
-    name VARCHAR(35) NOT NULL,
     password VARCHAR(250) NOT NULL,
-    surname1 VARCHAR(45) NOT NULL,
-    surname2 VARCHAR(45) NULL,
-    genre ENUM('male','female') NOT NULL,
     PRIMARY KEY(user_id)
 );
 
@@ -93,5 +91,5 @@ CREATE TABLE list_item (
 
 
 
-
-
+use mindnote;
+select * from user;

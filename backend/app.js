@@ -25,7 +25,7 @@ app.use(function (req, res, next) {
 
 //creacion del servidor
 app.listen(PORT, () => {
-  console.log('Servidor corriendo correctamente');
+  console.log('Servidor corriendo correctamente en puerto: ' + PORT);
 });
 
 module.exports = app;

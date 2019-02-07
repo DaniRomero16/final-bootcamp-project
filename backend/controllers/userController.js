@@ -3,13 +3,6 @@ var bcrypt = require('bcrypt-nodejs');
 var fs = require('fs');
 var jwt = require('jsonwebtoken');
 
-// Subir imagenes
-// let oldPath = req.files.foto.path;
-// let newPath = './public/img/' + req.files.foto.originalFilename;
-// let todb = '../img/' + req.files.foto.originalFilename;
-// fs.rename(oldPath, newPath, function (err) { 
-
-// });
 
 var controller = {
   registerUser: function (req, res) {
@@ -17,15 +10,10 @@ var controller = {
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(password, salt, null, function (err, hash) {
         password = hash;
-        if (!req.body.surname2) {
-          req.body.surname2 = null
-        } else {
-          req.body.surname2 = `'${req.body.surname2}'`
-        }
-        let sql = `INSERT INTO user (username,email,name,password,surname1,genre,surname2) 
+        let sql = `INSERT INTO user (username,email,name,password,surname) 
         VALUES ('${req.body.username}','${req.body.email}',
         '${req.body.name}','${password}',
-        '${req.body.surname1}','${req.body.genre}',${req.body.surname2})`;
+        '${req.body.surname}')`;
         con.query(sql, function (err, result) {
           if (err) {
             return res.send(err);
@@ -39,13 +27,12 @@ var controller = {
               ...userOk
             } = user;
             jwt.sign({
-              user
+              userOk
             }, 'mindnote', {
               expiresIn: '2h'
             }, (err, token) => {
               return res.json({
                 token,
-                ...userOk
               })
             })
           }
@@ -54,7 +41,7 @@ var controller = {
     })
   },
   loginUser: function (req, res) {
-    let sql = `SELECT * from user where username ='${req.body.username}'`;
+    let sql = `SELECT * from user where email ='${req.body.email}'`;
 
     con.query(sql, function (err, result) {
       if (err) {
@@ -63,7 +50,6 @@ var controller = {
         if (result == "") {
           return res.send('Usuario introducido no válido');
         } else {
-          console.log(req.body);
           bcrypt.compare(req.body.password, result[0].password, function (err, iguales) {
             if (err) {
               return res.send(err)
@@ -79,8 +65,7 @@ var controller = {
                   expiresIn: '2h'
                 }, (err, token) => {
                   return res.json({
-                    token,
-                    ...user
+                    token
                   })
                 })
               } else {

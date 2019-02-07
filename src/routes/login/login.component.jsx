@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-
 import styles from './login.styles.css';
+import { connect } from 'react-redux';
+import { loginUser } from '@Models';
 
-import { SignIn, ConnectedSignUp } from '@Components';
+import { ConnectedSignUp, ConnectedSignIn } from '@Components';
 
-export class Login extends Component {
+class Login extends Component {
   state = {
     step: 1,
   };
@@ -28,13 +29,26 @@ export class Login extends Component {
     switch (this.state.step) {
       case 1:
         return <ConnectedSignUp nextStep={this.nextStep} />;
-        break;
       case 2:
-        return <SignIn prevStep={this.prevStep} />;
-        break;
+        return <ConnectedSignIn prevStep={this.prevStep} />;
       default:
         return <div />;
-        break;
     }
   }
 }
+
+const mapStateToProps = (state, props) => {
+  return {
+    ...props,
+    logged: state.asyncReducer.isAuthenticated,
+  };
+};
+
+const mapDispatchToProps = {
+  login: loginUser,
+};
+
+export const ConnectedLogin = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login);

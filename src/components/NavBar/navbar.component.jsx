@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import styles from './navbar.styles.css';
+import { connect } from 'react-redux';
+import { logoutUser } from '@Models';
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -17,15 +19,20 @@ import {
 } from 'mdbreact';
 import { logo2 } from '@Assets';
 
-export class NavBar extends Component {
+class NavBar extends Component {
   state = {
     collapseID: '',
+    user: '',
   };
 
   toggleCollapse = collapseID => () =>
     this.setState(prevState => ({
       collapseID: prevState.collapseID !== collapseID ? collapseID : '',
     }));
+
+  handleLogout = () => {
+    this.props.logout();
+  };
   render() {
     return (
       <MDBContainer>
@@ -51,20 +58,24 @@ export class NavBar extends Component {
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
-                <MDBNavLink className="waves-effect waves-light" to="/login">
-                  <MDBIcon icon="user" className="mr-1" />
-                  LOGIN / SIGNUP
-                </MDBNavLink>
+                {!this.props.logged ? (
+                  <MDBNavLink className="waves-effect waves-light" to="/login">
+                    <MDBIcon icon="user" className="mr-1" />
+                    LOGIN / SIGNUP
+                  </MDBNavLink>
+                ) : null}
               </MDBNavItem>
               <MDBNavItem>
                 <MDBDropdown>
-                  <MDBDropdownToggle nav caret>
-                    <MDBIcon icon="user" className="mr-1" />
-                    Profile
-                  </MDBDropdownToggle>
+                  {this.props.logged ? (
+                    <MDBDropdownToggle nav caret>
+                      <MDBIcon icon="user" className="mr-1" />
+                      {this.props.user.username}
+                    </MDBDropdownToggle>
+                  ) : null}
                   <MDBDropdownMenu className="dropdown-default" right>
-                    <MDBDropdownItem href="#!">My account</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Log out</MDBDropdownItem>
+                    <MDBDropdownItem href="/profile">My account</MDBDropdownItem>
+                    <MDBDropdownItem onClick={this.handleLogout}>Log out</MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>
               </MDBNavItem>
@@ -72,20 +83,23 @@ export class NavBar extends Component {
           </MDBCollapse>
         </MDBNavbar>
       </MDBContainer>
-      // <div className={styles.root}>
-      //   <AppBar position="static">
-      //     <Toolbar>
-      //       <IconButton className={styles.menuButton} color="inherit" aria-label="Menu">
-      //         <MenuIcon />
-      //       </IconButton>
-      //
-      //       <Typography variant="h6" color="inherit" className={styles.grow} />
-      //       <MDBBtn href="/login" color="elegant">
-      //         Login / Signup
-      //       </MDBBtn>
-      //     </Toolbar>
-      //   </AppBar>
-      // </div>
     );
   }
 }
+
+const mapStateToProps = (state, props) => {
+  return {
+    ...props,
+    logged: state.asyncReducer.isAuthenticated,
+    user: state.asyncReducer.user,
+  };
+};
+
+const mapDispatchToProps = {
+  logout: logoutUser,
+};
+
+export const ConnectedNavBar = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(NavBar);

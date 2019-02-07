@@ -18,6 +18,8 @@ class SignUp extends PureComponent {
   state = {
     email: '',
     email2: '',
+    name: '',
+    surname: '',
     username: '',
     password: '',
     formErrors: { email: '', password: '', email2: '' },
@@ -76,17 +78,16 @@ class SignUp extends PureComponent {
       formValid: this.state.emailValid && this.state.passwordValid && this.state.email2Valid,
     });
   }
-  errorClass(error) {
-    return error.length === 0 ? '' : 'has-error';
-  }
 
-  handleSubmit() {
+  handleSubmit = () => {
     this.props.register({
       email: this.state.email,
       password: this.state.password,
       username: this.state.username,
+      surname: this.state.surname,
+      name: this.state.name,
     });
-  }
+  };
 
   render() {
     return (
@@ -98,12 +99,28 @@ class SignUp extends PureComponent {
                 <form>
                   <MDBCardHeader className="form-header my-3 deep-blue-gradient rounded">
                     <h3 className="my-3 text-center white-text">
-                      <MDBIcon icon="sign-in-alt" /> Sign Up:
+                      <MDBIcon icon="sign-in-alt" /> Sign Up
                     </h3>
                   </MDBCardHeader>
                   <div className="grey-text">
                     <MDBInput
                       label="Your name"
+                      icon="user"
+                      group
+                      type="text"
+                      onChange={this.handleChange('name')}
+                      value={this.state.name}
+                    />
+                    <MDBInput
+                      label="Your surname"
+                      icon="user"
+                      group
+                      type="text"
+                      onChange={this.handleChange('surname')}
+                      value={this.state.surname}
+                    />
+                    <MDBInput
+                      label="Your username"
                       icon="user"
                       group
                       type="text"
@@ -178,8 +195,8 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = () => {
-  register: registerUser;
+const mapDispatchToProps = {
+  register: registerUser,
 };
 
 export const ConnectedSignUp = connect(
