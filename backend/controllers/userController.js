@@ -18,16 +18,16 @@ var controller = {
           if (err) {
             return res.send(err);
           } else {
-            const user = {
+            const userBad = {
               id: result.insertId,
               ...req.body
             };
             const {
               password,
-              ...userOk
-            } = user;
+              ...user
+            } = userBad;
             jwt.sign({
-              userOk
+              user
             }, 'mindnote', {
               expiresIn: '2h'
             }, (err, token) => {

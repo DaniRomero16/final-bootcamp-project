@@ -11,13 +11,26 @@ import jwt from 'jsonwebtoken';
 export function asyncReducer(state = initial, action) {
   switch (action.type) {
     case 'REG_LOG_USER_SUCCESS':
+      let user = {};
+      let auth = false;
       localStorage.setItem('Authorization', action.payload.token);
       setAuthToken(action.payload.token);
+      jwt.verify(action.payload.token, 'mindnote', (err, decoded) => {
+        if (err) {
+
+        } else {
+          setAuthToken(action.payload.token);
+          user = decoded.user;
+          auth = true;
+          console.log(decoded)
+        }
+      });
+      console.log(user)
       return {
         ...state,
-        user: jwt.decode(action.payload.token).user,
-        isAuthenticated: true,
-      };
+        user,
+        isAuthenticated: auth,
+      }
 
     case 'REG_LOG_USER_ERROR':
       return state;
@@ -29,8 +42,8 @@ export function asyncReducer(state = initial, action) {
         isAuthenticated: false,
       };
     case 'GET_TOKEN':
-      var user = {};
-      var auth = false;
+      user = {};
+      auth = false;
       console.log(action.payload)
       jwt.verify(action.payload.token, 'mindnote', (err, decoded) => {
         if (err) {

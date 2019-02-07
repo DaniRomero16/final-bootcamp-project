@@ -3,11 +3,6 @@ var bodyParser = require('body-parser');
 const PORT = 3001;
 var app = express();
 
-//configuracion de archivos
-app.use(express.static(__dirname + '/public'));
-app.set('views', __dirname + '/public/views');
-app.engine('ejs', require('ejs').renderFile);
-app.set('view engine', 'ejs');
 
 //------------
 //middleware

@@ -2,17 +2,28 @@ import React, { PureComponent } from 'react';
 import styles from './diary.styles.css';
 import { connect } from 'react-redux';
 
-import { logo } from '@Assets';
+import { Post } from '@Components';
+import { MDBContainer, MDBBtn } from 'mdbreact';
 
 class Diary extends PureComponent {
+  state = {
+    modal: false,
+  };
+
+  toggle = () => {
+    this.setState({
+      modal: !this.state.modal,
+    });
+  };
   render() {
     return (
       <div className={styles.container}>
-        <img className={styles.logo} src={logo} />
-        <h1 className="text-white">
-          Online personal <b>tools</b> and <b>diary</b>
-        </h1>
-        <h5 className="h5-responsive text-white">START YOUR PERSONAL DEVELOPMENT</h5>
+        <MDBContainer className="text-white">
+          <MDBBtn flat size="lg" onClick={this.toggle}>
+            New Post
+          </MDBBtn>
+          <Post />
+        </MDBContainer>
       </div>
     );
   }

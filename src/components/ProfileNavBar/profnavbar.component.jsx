@@ -41,7 +41,7 @@ export class ProfNavbar extends Component {
               UTILITIES
             </MDBNavbarBrand>
             <MDBHamburgerToggler
-              color="#33b5e5"
+              color="#19E9D9"
               id="hamburger1"
               onClick={() => this.toggleSingleCollapse('collapse1')}
             />
