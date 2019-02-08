@@ -33,7 +33,9 @@ export function asyncReducer(state = initial, action) {
       }
 
     case 'REG_LOG_USER_ERROR':
-      return state;
+      return {
+        ...state
+      };
     case 'LOGOUT':
       localStorage.removeItem('Authorization');
       setAuthToken();
@@ -59,7 +61,54 @@ export function asyncReducer(state = initial, action) {
         user,
         isAuthenticated: auth,
       }
+
+    case 'GET_POSTS_SUCCESS':
+      return {
+        ...state,
+        posts: action.payload,
+      }
+    case 'GET_GOALS_SUCCESS':
+      return {
+        ...state,
+        goals: action.payload,
+      }
+
+    case 'ADD_POST_SUCCESS':
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+      }
+    case 'ADD_GOAL_SUCCESS':
+      return {
+        ...state,
+        goals: [...state.goals, action.payload],
+      }
+
+    case 'REMOVE_POST_SUCCESS':
+      return {
+        ...state,
+        posts: state.posts.filter(value => value.post_id !== action.payload.id),
+      }
+
+    case 'REMOVE_GOAL_SUCCESS':
+      return {
+        ...state,
+        goals: state.goals.filter(value => value.goal_id !== action.payload.id),
+      }
+    case 'UPDATE_GOAL':
+      return {
+        ...state
+      }
+
+    case 'GET_POSTS_ERROR':
+
+      return {
+        ...state
+      };
+
     default:
-      return state;
+      return {
+        ...state
+      };
   }
 }

@@ -45,11 +45,13 @@
     "axios": "^0.18.0",
     "jsonwebtoken": "^8.4.0",
     "mdbreact": "^4.10.0",
+    "moment": "^2.24.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.4",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "react-sweet-progress": "^1.1.2",
     "redux": ">=4.0.0",
     "redux-thunk": "^2.3.0",
     "src": "^1.1.2"

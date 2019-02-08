@@ -17,7 +17,7 @@ CREATE TABLE post (
     post_id int auto_increment,
     content longtext not null,
     name VARCHAR(150) NOT NULL,
-    date date NOT NULL,
+    date timestamp default current_timestamp,
     image varchar(250) null,
     PRIMARY KEY(post_id),
     FOREIGN KEY post_user_fk(user_id) REFERENCES user(user_id)
@@ -93,3 +93,14 @@ CREATE TABLE list_item (
 
 use mindnote;
 select * from user;
+select * from post;
+select * from goal;
+INSERT INTO post (user_id, content, name) 
+        VALUES (1,'content',
+        'title');
+        
+        drop table post;
+        
+        INSERT INTO goal (user_id, name, content, deadline, progress) 
+        VALUES (1,'My second Goal',
+        'This is my second goal in my new life!','2019-02-19',50);

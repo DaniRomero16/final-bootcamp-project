@@ -24,3 +24,12 @@ button:hover {
 h3 p {
   font-size: 1.2rem !important;
 }
+
+div div {
+  color: white !important;
+}
+
+.hola {
+  color: white !important;
+  font-size: 2rem !important;
+}

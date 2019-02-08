@@ -21,6 +21,7 @@ app.get("/post/get", verifyToken, postController.getPosts);
 app.post("/goal/new", verifyToken, goalController.addGoal);
 app.post("/goal/remove", verifyToken, goalController.removeGoal);
 app.get("/goal/get", verifyToken, goalController.getGoals);
+app.post("/goal/update", verifyToken, goalController.updateGoal);
 
 app.post("/comparison/new", verifyToken, comparisonController.addComparison);
 app.post("/comparison/remove", verifyToken, comparisonController.removeComparison);

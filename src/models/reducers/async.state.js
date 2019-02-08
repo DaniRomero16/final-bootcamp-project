@@ -1,4 +1,9 @@
 export const initialAsyncState = {
   isAuthenticated: false,
-  user: {}
+  user: {},
+  posts: [],
+  goals: [],
+  comparisons: [],
+  graphics: [],
+  lists: [],
 };
