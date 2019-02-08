@@ -60,7 +60,6 @@ export const getPosts = () => dispatch => {
 export const getGoals = () => dispatch => {
   axios.get("http://localhost:3001/goal/get")
     .then(response => {
-      console.log(response)
       dispatch(GetGoalsSucc(response.data))
     })
     .catch(err => {

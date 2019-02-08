@@ -15,11 +15,13 @@ var controller = {
     // }
     jwt.verify(req.token, 'mindnote', (err, authData) => {
       if (err) {
+
         res.sendStatus(403);
       } else {
-        let sql = `INSERT INTO goal (user_id, name, content, deadline, progress) 
+
+        let sql = `INSERT INTO goal (user_id, name, content, progress) 
         VALUES (${authData.user.user_id},'${req.body.name}',
-        '${req.body.content}','${req.body.deadline}',${req.body.progress})`;
+        '${req.body.content}',${req.body.progress})`;
         con.query(sql, function (err, result) {
           if (err) {
             return res.send(err);
@@ -74,6 +76,7 @@ var controller = {
       if (err) {
         res.sendStatus(403);
       } else {
+        console.log(authData);
         let sql = `select * from goal where user_id = ${authData.user.user_id};`;
         con.query(sql, function (err, result) {
           if (err) {

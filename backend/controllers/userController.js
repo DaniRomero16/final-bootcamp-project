@@ -19,7 +19,7 @@ var controller = {
             return res.send(err);
           } else {
             const userBad = {
-              id: result.insertId,
+              user_id: result.insertId,
               ...req.body
             };
             const {
