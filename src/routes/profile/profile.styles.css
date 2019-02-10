@@ -1,10 +1,17 @@
 .cont {
-  width: 60vw;
+  width: 70vw;
   height: 100%;
   margin-top: 150px;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgba(29, 27, 27, 0.411);
+  background-color: #1c2331;
   -webkit-box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19) !important;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19) !important;
+}
+
+@media only screen and (max-width: 700px) {
+  .cont {
+    width: 100vw;
+  }
+
 }

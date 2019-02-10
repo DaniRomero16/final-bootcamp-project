@@ -19,9 +19,9 @@ var controller = {
         res.sendStatus(403);
       } else {
 
-        let sql = `INSERT INTO goal (user_id, name, content, progress) 
+        let sql = `INSERT INTO goal (user_id, name, content, deadline, progress) 
         VALUES (${authData.user.user_id},'${req.body.name}',
-        '${req.body.content}',${req.body.progress})`;
+        '${req.body.content}','${req.body.deadline}',${req.body.progress})`;
         con.query(sql, function (err, result) {
           if (err) {
             return res.send(err);

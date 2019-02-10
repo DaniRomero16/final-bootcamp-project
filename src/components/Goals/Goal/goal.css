@@ -13,7 +13,7 @@ h3 button {
   top: 11px !important;
 }
 
-h3 button:hover {
+p button:hover {
   background-color: rgb(255, 44, 44);
 }
 

@@ -57,7 +57,7 @@ class Diary extends PureComponent {
     return (
       <div className={styles.container}>
         <MDBContainer className="white-text">
-          <MDBBtn flat size="lg" onClick={this.toggle}>
+          <MDBBtn className="z-depth-2 ml-5" color="pink" size="lg" onClick={this.toggle}>
             New Post <MDBIcon icon="plus" className="ml-3" />
           </MDBBtn>
           <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="left">

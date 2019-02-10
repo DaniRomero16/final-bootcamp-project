@@ -33,13 +33,13 @@ export class Post extends Component {
   render() {
     return (
       <MDBRow className="my-5 mx-4">
-        <MDBCol size="12" className="z-depth-2 p-5">
+        <MDBCol size="12" className="z-depth-4 p-5">
           <h3 className="h3-responsive">
             {this.props.post.name}
             <p className="font-weight-lighter">
               {moment(this.props.post.date).format('MMMM Do YYYY, h:mm:ss a')}
             </p>
-            <MDBBtn size="sm" flat className="text-right" onClick={this.toggle}>
+            <MDBBtn size="sm" flat className="text-right z-depth-3" onClick={this.toggle}>
               <MDBIcon icon="trash-alt" className="" />
             </MDBBtn>
           </h3>

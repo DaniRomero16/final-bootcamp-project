@@ -22,6 +22,7 @@ class Goals extends PureComponent {
     modal: false,
     title: '',
     content: '',
+    deadline: null,
   };
   componentDidMount() {
     this.props.loadGoals();
@@ -37,12 +38,13 @@ class Goals extends PureComponent {
       name: this.state.title,
       content: this.state.content,
       progress: 0,
-      deadline: 'NULL',
+      deadline: this.state.deadline,
     });
     this.setState({
       modal: !this.state.modal,
       title: '',
       content: '',
+      deadline: null,
     });
   };
   handleRemoveGoal = id => {
@@ -65,7 +67,7 @@ class Goals extends PureComponent {
     return (
       <div className={styles.container}>
         <MDBContainer className="white-text">
-          <MDBBtn flat size="lg" onClick={this.toggle}>
+          <MDBBtn color="amber" size="lg" className="z-depth-3" onClick={this.toggle}>
             New Goal <MDBIcon icon="plus" className="ml-3" />
           </MDBBtn>
           <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="left">
@@ -88,6 +90,17 @@ class Goals extends PureComponent {
                         className="form-control"
                       />
                       <br />
+                      <label htmlFor="deadline" className="grey-text font-weight-light">
+                        Goal Deadline
+                      </label>
+                      <input
+                        value={this.state.deadline}
+                        onChange={this.handleChange('deadline')}
+                        type="date"
+                        id="deadline"
+                        className="form-control"
+                      />
+                      <br />
                       <label htmlFor="content" className="grey-text font-weight-light">
                         Goal content
                       </label>
@@ -97,7 +110,7 @@ class Goals extends PureComponent {
                         type="text"
                         id="content"
                         className="form-control"
-                        rows="7"
+                        rows="4"
                       />
                       <div className="text-center py-4 mt-3" />
                     </form>

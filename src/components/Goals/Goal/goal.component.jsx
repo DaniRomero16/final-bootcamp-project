@@ -54,15 +54,26 @@ export class Goal extends Component {
     return (
       <MDBRow className="my-5 mx-4">
         <MDBCol size="12" className="z-depth-2 p-5 white-text">
-          <h3 className="h3-responsive">
-            {this.props.goal.name}
-            <p className=" text-right">
-              DEADLINE: {moment(this.props.goal.deadline).format('MMMM Do YYYY')}
-            </p>
-            <MDBBtn size="sm" flat className="text-right" onClick={this.toggle}>
-              <MDBIcon icon="trash-alt" className="" />
-            </MDBBtn>
-          </h3>
+          <MDBRow>
+            <MDBCol sm="12" md="6">
+              <p className="h3-responsive">
+                {this.props.goal.name}
+                <MDBBtn flat className="text-right ml-4 z-depth-1" onClick={this.toggle}>
+                  <MDBIcon icon="trash-alt" className="" />
+                </MDBBtn>
+              </p>
+            </MDBCol>
+            <MDBCol sm="12" md="6">
+              <p className="h4-responsive text-right">
+                DEADLINE:
+                {' ' +
+                  moment(this.props.goal.deadline)
+                    .endOf('hours')
+                    .fromNow()}
+              </p>
+            </MDBCol>
+          </MDBRow>
+
           <MDBBtn
             size="m"
             outline
