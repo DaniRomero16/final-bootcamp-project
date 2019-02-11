@@ -18,6 +18,11 @@ const GetGoalsSucc = payload => ({
   payload,
   type: 'GET_GOALS_SUCCESS'
 });
+
+const GetComparisonsSucc = payload => ({
+  payload,
+  type: 'GET_COMP_SUCCESS'
+});
 const GetPostsError = payload => ({
   payload,
   type: 'GET_POSTS_ERROR'
@@ -45,6 +50,24 @@ const UpdateGoal = payload => ({
   type: 'UPDATE_GOAL'
 });
 
+const AddComparisonSucc = payload => ({
+  payload,
+  type: 'ADD_COMPARISON'
+});
+const removeComparisonSucc = payload => ({
+  payload,
+  type: 'REMOVE_COMPARISON'
+});
+
+const AddCompareItemSucc = payload => ({
+  payload,
+  type: 'ADD_COMPARE_ITEM'
+});
+const removeCompareItemSucc = payload => ({
+  payload,
+  type: 'REMOVE_COMPARE_ITEM'
+});
+
 
 export const getPosts = () => dispatch => {
   axios.get("http://localhost:3001/post/get")
@@ -53,6 +76,17 @@ export const getPosts = () => dispatch => {
     })
     .catch(err => {
       dispatch(GetPostsError(err))
+    })
+
+};
+
+export const getComparisons = () => dispatch => {
+  axios.get("http://localhost:3001/comparison/get")
+    .then(response => {
+      dispatch(GetComparisonsSucc(response.data))
+    })
+    .catch(err => {
+      console.log(err);
     })
 
 };
@@ -125,14 +159,70 @@ export const addGoal = (goal) => dispatch => {
 
 };
 
-export const removeGoal = (goal) => dispatch => {
+export const removeGoal = (id) => dispatch => {
   axios.post("http://localhost:3001/goal/remove", {
-      id: goal
+      id: id
     })
     .then(response => {
       console.log(response)
       dispatch(removeGoalSucc({
-        id: goal
+        id: id
+      }))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};
+
+export const addComparison = (comp) => dispatch => {
+  axios.post("http://localhost:3001/comparison/new", comp)
+    .then(response => {
+      console.log(response);
+      dispatch(AddComparisonSucc(response.data))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};
+
+export const removeComparison = (id) => dispatch => {
+  axios.post("http://localhost:3001/comparison/remove", {
+      id: id
+    })
+    .then(response => {
+      console.log(response)
+      dispatch(removeComparisonSucc({
+        id: id
+      }))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};
+
+export const addCompareItem = (comp) => dispatch => {
+  axios.post("http://localhost:3001/compare_item/new", comp)
+    .then(response => {
+      console.log(response);
+      dispatch(AddCompareItemSucc(response.data))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};
+
+export const removeCompareItem = (id) => dispatch => {
+  axios.post("http://localhost:3001/compare_item/remove", {
+      id: id
+    })
+    .then(response => {
+      console.log(response)
+      dispatch(removeCompareItemSucc({
+        id: id
       }))
     })
     .catch(err => {

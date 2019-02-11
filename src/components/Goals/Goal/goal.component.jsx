@@ -6,11 +6,8 @@ import {
   MDBBtn,
   MDBIcon,
   MDBModalFooter,
-  MDBContainer,
-  MDBModalBody,
   MDBModalHeader,
   MDBModal,
-  Progress as Pro,
 } from 'mdbreact';
 import moment from 'moment';
 

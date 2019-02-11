@@ -4,7 +4,6 @@ var jwt = require('jsonwebtoken')
 var controller = {
 
   addGoal: function (req, res) {
-    console.log(req.body);
     // if (req.files.foto) {
     //   let oldPath = req.files.foto.path;
     //   let newPath = './public/img/' + req.files.foto.originalFilename;
@@ -76,7 +75,6 @@ var controller = {
       if (err) {
         res.sendStatus(403);
       } else {
-        console.log(authData);
         let sql = `select * from goal where user_id = ${authData.user.user_id};`;
         con.query(sql, function (err, result) {
           if (err) {

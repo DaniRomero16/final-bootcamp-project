@@ -8,14 +8,16 @@ var controller = {
         res.sendStatus(403);
       } else {
         console.log(authData);
-        let sql = `INSERT INTO comparison (user_id,name) VALUES (${authData.user.id},'${req.body.name}')`;
+        let sql = `INSERT INTO comparison (user_id,name, leftC, rightC) VALUES (${authData.user.user_id},'${req.body.name}','${req.body.leftC}','${req.body.rightC}')`;
         con.query(sql, function (err, result) {
           if (err) {
             return res.send(err);
           } else {
             let comparison = {
-              id: result.insertId,
-              ...req.body
+              comparison_id: result.insertId,
+              ...req.body,
+              left: [],
+              right: [],
             }
             return res.send(comparison);
           }
@@ -46,7 +48,7 @@ var controller = {
       if (err) {
         res.sendStatus(403);
       } else {
-        let sql = `select * from comparison where user_id = ${authData.user.id};`;
+        let sql = `select * from comparison where user_id = ${authData.user.user_id};`;
         let toSend = [];
         con.query(sql, function (err, comparisons) {
           if (err) {
@@ -89,18 +91,19 @@ var controller = {
 
   },
   addCompareItem: function (req, res) {
+
     jwt.verify(req.token, 'mindnote', (err, authData) => {
       if (err) {
         res.sendStatus(403);
       } else {
-        let sql = `INSERT INTO compare_item (comparison_id,name,side,content) 
-        VALUES (${req.body.comparison},'${req.body.name}','${req.body.side}','${req.body.content}')`;
+        let sql = `INSERT INTO compare_item (comparison_id,name,side) 
+        VALUES (${req.body.comparison_id},'${req.body.name}','${req.body.side}')`;
         con.query(sql, function (err, result) {
           if (err) {
             return res.send(err);
           } else {
             let item = {
-              id: result.insertId,
+              item_id: result.insertId,
               ...req.body
             }
             return res.send(item);
@@ -111,6 +114,7 @@ var controller = {
 
   },
   removeCompareItem: function (req, res) {
+
     jwt.verify(req.token, 'mindnote', (err, authData) => {
       if (err) {
         res.sendStatus(403);

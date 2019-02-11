@@ -20,7 +20,7 @@ CREATE TABLE post (
     date timestamp default current_timestamp,
     image varchar(250) null,
     PRIMARY KEY(post_id),
-    FOREIGN KEY post_user_fk(user_id) REFERENCES user(user_id)
+    FOREIGN KEY post_user_fk(user_id) REFERENCES user(user_id) on delete cascade
 );
 
 CREATE TABLE goal (
@@ -32,15 +32,17 @@ CREATE TABLE goal (
     progress tinyint not null default 0,
     image varchar(250) null,
     PRIMARY KEY(goal_id),
-    FOREIGN KEY goal_user_fk(user_id) REFERENCES user(user_id)
+    FOREIGN KEY goal_user_fk(user_id) REFERENCES user(user_id) on delete cascade
 );
 
 CREATE TABLE comparison (
     user_id int not null,
     comparison_id int auto_increment,
     name VARCHAR(150) NOT NULL,
+    leftC VARCHAR(150) NOT NULL,
+    rightC VARCHAR(150) NOT NULL,
     PRIMARY KEY(comparison_id),
-    FOREIGN KEY comparison_user_fk(user_id) REFERENCES user(user_id)
+    FOREIGN KEY comparison_user_fk(user_id) REFERENCES user(user_id) on delete cascade
 );
 
 CREATE TABLE compare_item (
@@ -50,7 +52,7 @@ CREATE TABLE compare_item (
     name VARCHAR(150) NOT NULL,
     content longtext null,
     PRIMARY KEY(item_id),
-    FOREIGN KEY item_comparison_fk(comparison_id) REFERENCES comparison(comparison_id)
+    FOREIGN KEY item_comparison_fk(comparison_id) REFERENCES comparison(comparison_id) on delete cascade
 );
 
 CREATE TABLE graphic (
@@ -58,7 +60,7 @@ CREATE TABLE graphic (
     graphic_id int auto_increment,
     name VARCHAR(150) NOT NULL,
     PRIMARY KEY(graphic_id),
-    FOREIGN KEY graphic_user_fk(user_id) REFERENCES user(user_id)
+    FOREIGN KEY graphic_user_fk(user_id) REFERENCES user(user_id) on delete cascade
 );
 
 CREATE TABLE graphic_item (
@@ -67,7 +69,7 @@ CREATE TABLE graphic_item (
     value bigint not null,
     name VARCHAR(150) NOT NULL,
     PRIMARY KEY(item_id),
-    FOREIGN KEY item_graphic_fk(graphic_id) REFERENCES graphic(graphic_id)
+    FOREIGN KEY item_graphic_fk(graphic_id) REFERENCES graphic(graphic_id) on delete cascade
 );
 
 CREATE TABLE todolist (
@@ -76,7 +78,7 @@ CREATE TABLE todolist (
     name VARCHAR(150) NOT NULL,
 	description text null,
     PRIMARY KEY(list_id),
-    FOREIGN KEY list_user_fk(user_id) REFERENCES user(user_id)
+    FOREIGN KEY list_user_fk(user_id) REFERENCES user(user_id) on delete cascade
 );
 
 CREATE TABLE list_item (
@@ -86,7 +88,7 @@ CREATE TABLE list_item (
     state ENUM('todo','inprogress','completed') NOT NULL,
 	description text null,
     PRIMARY KEY(item_id),
-    FOREIGN KEY item_list_fk(list_id) REFERENCES todolist(list_id)
+    FOREIGN KEY item_list_fk(list_id) REFERENCES todolist(list_id) on delete cascade
 );
 
 
@@ -95,6 +97,10 @@ use mindnote;
 select * from user;
 select * from post;
 select * from goal;
+select * from comparison;
+select * from compare_item;
+
+
 INSERT INTO post (user_id, content, name) 
         VALUES (1,'content',
         'title');

@@ -100,11 +100,22 @@ export function asyncReducer(state = initial, action) {
         ...state
       }
 
-    case 'GET_POSTS_ERROR':
-
+    case 'ADD_COMPARISON':
       return {
-        ...state
-      };
+        ...state,
+        comparisons: [...state.comparisons, action.payload],
+      }
+
+    case 'REMOVE_COMPARISON':
+      return {
+        ...state,
+        comparisons: state.comparisons.filter(value => value.comparison_id !== action.payload.id),
+      }
+    case 'GET_COMP_SUCCESS':
+      return {
+        ...state,
+        comparisons: action.payload,
+      }
 
     default:
       return {
