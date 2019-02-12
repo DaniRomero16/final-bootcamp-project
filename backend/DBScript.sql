@@ -67,7 +67,7 @@ CREATE TABLE graphic_item (
     graphic_id int not null,
     item_id int auto_increment,
     value bigint not null,
-    name VARCHAR(150) NOT NULL,
+    date timestamp default current_timestamp,
     PRIMARY KEY(item_id),
     FOREIGN KEY item_graphic_fk(graphic_id) REFERENCES graphic(graphic_id) on delete cascade
 );

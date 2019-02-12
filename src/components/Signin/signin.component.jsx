@@ -13,6 +13,7 @@ import {
   MDBCardHeader,
   MDBBtn,
 } from 'mdbreact';
+import { withRouter } from 'react-router-dom';
 
 export class SignIn extends PureComponent {
   state = {
@@ -20,16 +21,25 @@ export class SignIn extends PureComponent {
     password: '',
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.isAuthenticated) {
+      this.props.history.push('/profile');
+    }
+  }
+
   handleChange = input => e => {
     const value = e.target.value;
     this.setState({ [input]: value });
   };
 
   handleLogin = () => {
-    this.props.login({
-      email: this.state.email,
-      password: this.state.password,
-    });
+    this.props.login(
+      {
+        email: this.state.email,
+        password: this.state.password,
+      },
+      this.props.history,
+    );
   };
   render() {
     return (
@@ -98,6 +108,7 @@ export class SignIn extends PureComponent {
 const mapStateToProps = (state, props) => {
   return {
     ...props,
+    isAuthenticated: state.asyncReducer.isAuthenticated,
   };
 };
 
@@ -108,4 +119,4 @@ const mapDispatchToProps = {
 export const ConnectedSignIn = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SignIn);
+)(withRouter(SignIn));

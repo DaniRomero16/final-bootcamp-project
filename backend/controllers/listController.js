@@ -1,5 +1,5 @@
 var con = require('../db');
-
+var jwt = require('jsonwebtoken');
 var controller = {
 
   addList: function (req, res) {

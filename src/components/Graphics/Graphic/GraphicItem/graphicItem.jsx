@@ -8,7 +8,7 @@ import {
   MDBModalFooter,
 } from 'mdbreact';
 
-export class CompareItem extends PureComponent {
+export class GraphicItem extends PureComponent {
   state = {
     modal: false,
   };

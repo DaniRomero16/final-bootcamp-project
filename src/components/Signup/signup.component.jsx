@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import styles from './signup.styles.css';
 import { connect } from 'react-redux';
 import { registerUser } from '@Models';
+import { withRouter } from 'react-router-dom';
 import {
   MDBContainer,
   MDBRow,
@@ -79,14 +80,23 @@ class SignUp extends PureComponent {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.isAuthenticated) {
+      this.props.history.push('/profile');
+    }
+  }
+
   handleSubmit = () => {
-    this.props.register({
-      email: this.state.email,
-      password: this.state.password,
-      username: this.state.username,
-      surname: this.state.surname,
-      name: this.state.name,
-    });
+    this.props.register(
+      {
+        email: this.state.email,
+        password: this.state.password,
+        username: this.state.username,
+        surname: this.state.surname,
+        name: this.state.name,
+      },
+      this.props.history,
+    );
   };
 
   render() {
@@ -192,6 +202,7 @@ class SignUp extends PureComponent {
 const mapStateToProps = (state, props) => {
   return {
     ...props,
+    isAuthenticated: state.asyncReducer.isAuthenticated,
   };
 };
 
@@ -202,4 +213,4 @@ const mapDispatchToProps = {
 export const ConnectedSignUp = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SignUp);
+)(withRouter(SignUp));

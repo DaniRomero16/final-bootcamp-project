@@ -1,16 +1,10 @@
 import React, { PureComponent } from 'react';
-import styles from './comparisons.styles.css';
+import styles from './lists.styles.css';
 import { connect } from 'react-redux';
 
-import { Comparison } from '@Components';
+import { List } from '@Components';
 
-import {
-  getComparisons,
-  addComparison,
-  removeComparison,
-  removeCompareItem,
-  addCompareItem,
-} from '@Models';
+import { getLists, addList, removeList, removeListItem, addListItem } from '@Models';
 import {
   MDBContainer,
   MDBBtn,
@@ -23,7 +17,7 @@ import {
   MDBCol,
 } from 'mdbreact';
 
-class Comparisons extends PureComponent {
+class Lists extends PureComponent {
   state = {
     modal: false,
     name: '',
@@ -31,7 +25,7 @@ class Comparisons extends PureComponent {
     rightC: '',
   };
   componentDidMount() {
-    this.props.loadComparisons();
+    this.props.loadLists();
   }
 
   handleChange = input => e => {
@@ -39,8 +33,8 @@ class Comparisons extends PureComponent {
     this.setState({ [input]: value });
   };
 
-  handleNewComparison = () => {
-    this.props.newComparison({
+  handleNewList = () => {
+    this.props.newList({
       name: this.state.name,
       leftC: this.state.leftC,
       rightC: this.state.rightC,
@@ -51,21 +45,21 @@ class Comparisons extends PureComponent {
       leftC: '',
       rightC: '',
     });
-    this.props.loadComparisons();
+    this.props.loadLists();
   };
   handleRemoveItem = id => {
     this.props.removeItem(id);
-    this.props.loadComparisons();
+    this.props.loadLists();
   };
 
   handleNewItem = item => {
     this.props.newItem(item);
-    this.props.loadComparisons();
+    this.props.loadLists();
   };
 
-  handleRemoveComparison = id => {
-    this.props.deleteComparison(id);
-    this.props.loadComparisons();
+  handleRemoveList = id => {
+    this.props.deleteList(id);
+    this.props.loadLists();
   };
 
   toggle = () => {
@@ -79,11 +73,11 @@ class Comparisons extends PureComponent {
       <div className={styles.container}>
         <MDBContainer className="white-text">
           <MDBBtn color="green" size="lg" className="z-depth-3" onClick={this.toggle}>
-            New Comparison <MDBIcon icon="plus" className="ml-3" />
+            New List <MDBIcon icon="plus" className="ml-3" />
           </MDBBtn>
           <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="left">
             <MDBModalHeader className="black-text" toggle={this.toggle}>
-              Fill the New Comparison info:
+              Fill the New List info:
             </MDBModalHeader>
             <MDBModalBody className="black-text">
               <MDBContainer>
@@ -91,7 +85,7 @@ class Comparisons extends PureComponent {
                   <MDBCol md="12">
                     <form>
                       <label htmlFor="name" className="grey-text font-weight-light">
-                        Comparison Name
+                        List Name
                       </label>
                       <input
                         value={this.state.name}
@@ -133,19 +127,19 @@ class Comparisons extends PureComponent {
               <MDBBtn color="secondary" onClick={this.toggle}>
                 Close
               </MDBBtn>
-              <MDBBtn className="btn btn-outline-purple" onClick={this.handleNewComparison}>
+              <MDBBtn className="btn btn-outline-purple" onClick={this.handleNewList}>
                 Confirm
                 <MDBIcon far icon="paper-plane" className="ml-2" />
               </MDBBtn>
             </MDBModalFooter>
           </MDBModal>
-          {this.props.comparisons.map(c => (
-            <Comparison
-              key={c.comparison_id}
+          {this.props.lists.map(c => (
+            <List
+              key={c.list_id}
               removeItem={this.handleRemoveItem}
               newItem={this.handleNewItem}
-              comparison={c}
-              remove={this.handleRemoveComparison}
+              list={c}
+              remove={this.handleRemoveList}
             />
           ))}
         </MDBContainer>
@@ -158,19 +152,19 @@ const mapStateToProps = (state, props) => {
     ...props,
     logged: state.asyncReducer.isAuthenticated,
     user: state.asyncReducer.user,
-    comparisons: state.asyncReducer.comparisons,
+    lists: state.asyncReducer.lists,
   };
 };
 
 const mapDispatchToProps = {
-  loadComparisons: getComparisons,
-  newComparison: addComparison,
-  deleteComparison: removeComparison,
-  newItem: addCompareItem,
-  removeItem: removeCompareItem,
+  loadLists: getLists,
+  newList: addList,
+  deleteList: removeList,
+  newItem: addListItem,
+  removeItem: removeListItem,
 };
 
-export const ConnectedComparisons = connect(
+export const ConnectedLists = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Comparisons);
+)(Lists);

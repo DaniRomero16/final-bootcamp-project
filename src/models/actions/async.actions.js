@@ -23,6 +23,10 @@ const GetComparisonsSucc = payload => ({
   payload,
   type: 'GET_COMP_SUCCESS'
 });
+const GetGraphicsSucc = payload => ({
+  payload,
+  type: 'GET_GRAPH_SUCCESS'
+});
 const GetPostsError = payload => ({
   payload,
   type: 'GET_POSTS_ERROR'
@@ -234,10 +238,11 @@ export const removeCompareItem = (id) => dispatch => {
 
 
 
-export const registerUser = (user) => dispatch => {
+export const registerUser = (user, history) => dispatch => {
   axios.post("http://localhost:3001/users/register", user)
     .then(response => {
-      dispatch(RegLogUserSucc(response.data))
+      dispatch(RegLogUserSucc(response.data));
+      history.push('/profile');
     })
     .catch(err => {
       dispatch(RegLogUserError(err))
@@ -246,10 +251,11 @@ export const registerUser = (user) => dispatch => {
 };
 
 
-export const loginUser = (user) => dispatch => {
+export const loginUser = (user, history) => dispatch => {
   axios.post("http://localhost:3001/users/login", user)
     .then(response => {
-      dispatch(RegLogUserSucc(response.data))
+      dispatch(RegLogUserSucc(response.data));
+      history.push('/profile');
     })
     .catch(err => {
       dispatch(RegLogUserError(err))
@@ -260,3 +266,87 @@ export const loginUser = (user) => dispatch => {
 export const logoutUser = () => dispatch => {
   dispatch(LogoutUserS({}));
 }
+
+const AddGraphicItemSucc = payload => ({
+  payload,
+  type: 'ADD_GRAPHIC_ITEM'
+});
+const removeGraphicItemSucc = payload => ({
+  payload,
+  type: 'REMOVE_GRAPHIC_ITEM'
+});
+
+
+export const addGraphicItem = (graph) => dispatch => {
+  axios.post("http://localhost:3001/graphic_item/new", graph)
+    .then(response => {
+      dispatch(AddGraphicItemSucc(response.data))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};
+
+export const removeGraphicItem = (id) => dispatch => {
+  axios.post("http://localhost:3001/graphic_item/remove", {
+      id: id
+    })
+    .then(response => {
+      dispatch(removeGraphicItemSucc({
+        id: id
+      }))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};
+
+const AddGraphicSucc = payload => ({
+  payload,
+  type: 'ADD_GRAPHIC'
+});
+const removeGraphicSucc = payload => ({
+  payload,
+  type: 'REMOVE_GRAPHIC'
+});
+
+export const getGraphics = () => dispatch => {
+  axios.get("http://localhost:3001/graphic/get")
+    .then(response => {
+      dispatch(GetGraphicsSucc(response.data))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};
+
+export const addGraphic = (comp) => dispatch => {
+  axios.post("http://localhost:3001/graphic/new", comp)
+    .then(response => {
+      console.log(response);
+      dispatch(AddGraphicSucc(response.data))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};
+
+export const removeGraphic = (id) => dispatch => {
+  axios.post("http://localhost:3001/graphic/remove", {
+      id: id
+    })
+    .then(response => {
+      console.log(response)
+      dispatch(removeGraphicSucc({
+        id: id
+      }))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};

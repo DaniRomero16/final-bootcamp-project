@@ -1,16 +1,10 @@
 import React, { PureComponent } from 'react';
-import styles from './comparisons.styles.css';
+import styles from './graphics.styles.css';
 import { connect } from 'react-redux';
 
-import { Comparison } from '@Components';
+import { Graphic } from '@Components';
 
-import {
-  getComparisons,
-  addComparison,
-  removeComparison,
-  removeCompareItem,
-  addCompareItem,
-} from '@Models';
+import { getGraphics, addGraphic, removeGraphic, removeGraphicItem, addGraphicItem } from '@Models';
 import {
   MDBContainer,
   MDBBtn,
@@ -23,15 +17,13 @@ import {
   MDBCol,
 } from 'mdbreact';
 
-class Comparisons extends PureComponent {
+class Graphics extends PureComponent {
   state = {
     modal: false,
     name: '',
-    leftC: '',
-    rightC: '',
   };
   componentDidMount() {
-    this.props.loadComparisons();
+    this.props.loadGraphics();
   }
 
   handleChange = input => e => {
@@ -39,33 +31,29 @@ class Comparisons extends PureComponent {
     this.setState({ [input]: value });
   };
 
-  handleNewComparison = () => {
-    this.props.newComparison({
+  handleNewGraphic = () => {
+    this.props.newGraphic({
       name: this.state.name,
-      leftC: this.state.leftC,
-      rightC: this.state.rightC,
     });
     this.setState({
       modal: !this.state.modal,
       name: '',
-      leftC: '',
-      rightC: '',
     });
-    this.props.loadComparisons();
+    this.props.loadGraphics();
   };
   handleRemoveItem = id => {
     this.props.removeItem(id);
-    this.props.loadComparisons();
+    this.props.loadGraphics();
   };
 
   handleNewItem = item => {
     this.props.newItem(item);
-    this.props.loadComparisons();
+    this.props.loadGraphics();
   };
 
-  handleRemoveComparison = id => {
-    this.props.deleteComparison(id);
-    this.props.loadComparisons();
+  handleRemoveGraphic = id => {
+    this.props.deleteGraphic(id);
+    this.props.loadGraphics();
   };
 
   toggle = () => {
@@ -79,11 +67,11 @@ class Comparisons extends PureComponent {
       <div className={styles.container}>
         <MDBContainer className="white-text">
           <MDBBtn color="green" size="lg" className="z-depth-3" onClick={this.toggle}>
-            New Comparison <MDBIcon icon="plus" className="ml-3" />
+            New Graphic <MDBIcon icon="plus" className="ml-3" />
           </MDBBtn>
           <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="left">
             <MDBModalHeader className="black-text" toggle={this.toggle}>
-              Fill the New Comparison info:
+              Fill the New Graphic info:
             </MDBModalHeader>
             <MDBModalBody className="black-text">
               <MDBContainer>
@@ -91,7 +79,7 @@ class Comparisons extends PureComponent {
                   <MDBCol md="12">
                     <form>
                       <label htmlFor="name" className="grey-text font-weight-light">
-                        Comparison Name
+                        Graphic Name
                       </label>
                       <input
                         value={this.state.name}
@@ -100,30 +88,6 @@ class Comparisons extends PureComponent {
                         id="name"
                         className="form-control"
                       />
-                      <br />
-                      <label htmlFor="left" className="grey-text font-weight-light">
-                        Left Column
-                      </label>
-                      <input
-                        value={this.state.leftC}
-                        onChange={this.handleChange('leftC')}
-                        type="text"
-                        id="left"
-                        className="form-control"
-                      />
-                      <br />
-                      <label htmlFor="right" className="grey-text font-weight-light">
-                        Right Column
-                      </label>
-                      <input
-                        value={this.state.rightC}
-                        onChange={this.handleChange('rightC')}
-                        type="text"
-                        id="right"
-                        className="form-control"
-                      />
-                      <br />
-                      <div className="text-center py-4 mt-3" />
                     </form>
                   </MDBCol>
                 </MDBRow>
@@ -133,19 +97,19 @@ class Comparisons extends PureComponent {
               <MDBBtn color="secondary" onClick={this.toggle}>
                 Close
               </MDBBtn>
-              <MDBBtn className="btn btn-outline-purple" onClick={this.handleNewComparison}>
+              <MDBBtn className="btn btn-outline-purple" onClick={this.handleNewGraphic}>
                 Confirm
                 <MDBIcon far icon="paper-plane" className="ml-2" />
               </MDBBtn>
             </MDBModalFooter>
           </MDBModal>
-          {this.props.comparisons.map(c => (
-            <Comparison
-              key={c.comparison_id}
+          {this.props.graphics.map(c => (
+            <Graphic
+              key={c.graphic_id}
               removeItem={this.handleRemoveItem}
               newItem={this.handleNewItem}
-              comparison={c}
-              remove={this.handleRemoveComparison}
+              graphic={c}
+              remove={this.handleRemoveGraphic}
             />
           ))}
         </MDBContainer>
@@ -158,19 +122,19 @@ const mapStateToProps = (state, props) => {
     ...props,
     logged: state.asyncReducer.isAuthenticated,
     user: state.asyncReducer.user,
-    comparisons: state.asyncReducer.comparisons,
+    graphics: state.asyncReducer.graphics,
   };
 };
 
 const mapDispatchToProps = {
-  loadComparisons: getComparisons,
-  newComparison: addComparison,
-  deleteComparison: removeComparison,
-  newItem: addCompareItem,
-  removeItem: removeCompareItem,
+  loadGraphics: getGraphics,
+  newGraphic: addGraphic,
+  deleteGraphic: removeGraphic,
+  newItem: addGraphicItem,
+  removeItem: removeGraphicItem,
 };
 
-export const ConnectedComparisons = connect(
+export const ConnectedGraphics = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Comparisons);
+)(Graphics);

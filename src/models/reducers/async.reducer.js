@@ -46,7 +46,6 @@ export function asyncReducer(state = initial, action) {
     case 'GET_TOKEN':
       user = {};
       auth = false;
-      console.log(action.payload)
       jwt.verify(action.payload.token, 'mindnote', (err, decoded) => {
         if (err) {
 
@@ -115,6 +114,23 @@ export function asyncReducer(state = initial, action) {
       return {
         ...state,
         comparisons: action.payload,
+      }
+
+    case 'ADD_GRAPHIC':
+      return {
+        ...state,
+        graphics: [...state.graphics, action.payload],
+      }
+
+    case 'REMOVE_GRAPHIC':
+      return {
+        ...state,
+        graphics: state.graphics.filter(value => value.graphic_id !== action.payload.id),
+      }
+    case 'GET_GRAPH_SUCCESS':
+      return {
+        ...state,
+        graphics: action.payload,
       }
 
     default:
