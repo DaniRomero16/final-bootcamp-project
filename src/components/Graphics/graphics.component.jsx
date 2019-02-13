@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import styles from './graphics.styles.css';
 import { connect } from 'react-redux';
 
@@ -17,7 +17,7 @@ import {
   MDBCol,
 } from 'mdbreact';
 
-class Graphics extends PureComponent {
+class Graphics extends Component {
   state = {
     modal: false,
     name: '',
@@ -44,11 +44,17 @@ class Graphics extends PureComponent {
   handleRemoveItem = id => {
     this.props.removeItem(id);
     this.props.loadGraphics();
+    this.setState({
+      name: '',
+    });
   };
 
   handleNewItem = item => {
     this.props.newItem(item);
     this.props.loadGraphics();
+    this.setState({
+      name: '',
+    });
   };
 
   handleRemoveGraphic = id => {

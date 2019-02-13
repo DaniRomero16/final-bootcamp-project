@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
   MDBListGroupItem,
   MDBBtn,
@@ -8,7 +8,7 @@ import {
   MDBModalFooter,
 } from 'mdbreact';
 
-export class GraphicItem extends PureComponent {
+export class GraphicItem extends Component {
   state = {
     modal: false,
   };

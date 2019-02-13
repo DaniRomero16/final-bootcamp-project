@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 import moment from 'moment';
 import './graphic.css';
@@ -13,16 +13,16 @@ import {
   MDBModalBody,
   MDBContainer,
 } from 'mdbreact';
-export class Graphic extends PureComponent {
+export class Graphic extends Component {
   state = {
     modal: false,
     modal2: false,
-    value: '',
+    value: '4',
     dataLine: {
       labels: this.props.graphic.items.map(i => moment(i.date).format('MMM DD')),
       datasets: [
         {
-          label: 'My Progress',
+          label: 'My Progress (7: Excellent, 1: Horrible)',
           fill: false,
           lineTension: 0.1,
           backgroundColor: 'rgba(75,192,192,0.4)',
@@ -62,7 +62,7 @@ export class Graphic extends PureComponent {
     });
     this.setState({
       modal2: !this.state.modal2,
-      value: '',
+      value: '4',
     });
   };
 
@@ -98,6 +98,9 @@ export class Graphic extends PureComponent {
           <hr className="my-3" />
           <MDBRow>
             <MDBContainer>
+              <MDBBtn color="green" size="sm" className="z-depth-1" onClick={this.toggle2}>
+                New Progress Point <MDBIcon icon="plus" className="ml-1" />
+              </MDBBtn>
               <Line data={this.state.dataLine} options={{ responsive: true }} />
             </MDBContainer>
           </MDBRow>
@@ -129,15 +132,21 @@ export class Graphic extends PureComponent {
                   <MDBCol md="12">
                     <form>
                       <label htmlFor="value" className="grey-text font-weight-light">
-                        Item Value
+                        Choose your satisfaction grade
                       </label>
-                      <input
+                      <select
                         value={this.state.value}
                         onChange={this.handleChange('value')}
-                        type="text"
                         id="value"
-                        className="form-control"
-                      />
+                        className="browser-default custom-select">
+                        <option value="7">Excellent</option>
+                        <option value="6">Very Good</option>
+                        <option value="5">Good</option>
+                        <option value="4">Meh</option>
+                        <option value="3">Bad</option>
+                        <option value="2">Very Bad</option>
+                        <option value="1">Horrible</option>
+                      </select>
                       <br />
                       <div className="text-center py-4 mt-3" />
                     </form>

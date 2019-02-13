@@ -53,7 +53,7 @@ var controller = {
             return res.send(err);
           } else {
             graphics.forEach((graph, index) => {
-              let sql2 = `select * from graphic_item where graphic_id = ${graph.graphic_id};`;
+              let sql2 = `select * from graphic_item where graphic_id = ${graph.graphic_id} order by date asc`;
               con.query(sql2, (err, items) => {
                 if (err) {
                   return res.send(err);
