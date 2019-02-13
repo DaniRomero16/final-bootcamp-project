@@ -25,7 +25,6 @@ class Graphics extends Component {
   componentDidMount() {
     this.props.loadGraphics();
   }
-
   handleChange = input => e => {
     const value = e.target.value;
     this.setState({ [input]: value });
@@ -68,7 +67,7 @@ class Graphics extends Component {
     });
   };
   render() {
-    console.log(this.props);
+    const graph = this.props.graphics;
     return (
       <div className={styles.container}>
         <MDBContainer className="white-text">
@@ -109,7 +108,7 @@ class Graphics extends Component {
               </MDBBtn>
             </MDBModalFooter>
           </MDBModal>
-          {this.props.graphics.map(c => (
+          {graph.map(c => (
             <Graphic
               key={c.graphic_id}
               removeItem={this.handleRemoveItem}

@@ -66,7 +66,7 @@ CREATE TABLE graphic (
 CREATE TABLE graphic_item (
     graphic_id int not null,
     item_id int auto_increment,
-    value bigint not null,
+    value int not null,
     date timestamp default current_timestamp,
     PRIMARY KEY(item_id),
     FOREIGN KEY item_graphic_fk(graphic_id) REFERENCES graphic(graphic_id) on delete cascade
@@ -101,12 +101,3 @@ select * from comparison;
 select * from compare_item;
 
 
-INSERT INTO post (user_id, content, name) 
-        VALUES (1,'content',
-        'title');
-        
-        drop table post;
-        
-        INSERT INTO goal (user_id, name, content, deadline, progress) 
-        VALUES (1,'My second Goal',
-        'This is my second goal in my new life!','2019-02-19',50);
