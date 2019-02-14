@@ -76,79 +76,89 @@ class Comparisons extends PureComponent {
   render() {
     console.log(this.props);
     return (
-      <div className={styles.container}>
-        <MDBContainer className="white-text">
-          <MDBBtn color="green" size="lg" className="z-depth-3" onClick={this.toggle}>
-            New Comparison <MDBIcon icon="plus" className="ml-3" />
-          </MDBBtn>
-          <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="left">
-            <MDBModalHeader className="black-text" toggle={this.toggle}>
-              Fill the New Comparison info:
-            </MDBModalHeader>
-            <MDBModalBody className="black-text">
-              <MDBContainer>
-                <MDBRow>
-                  <MDBCol md="12">
-                    <form>
-                      <label htmlFor="name" className="grey-text font-weight-light">
-                        Comparison Name
-                      </label>
-                      <input
-                        value={this.state.name}
-                        onChange={this.handleChange('name')}
-                        type="text"
-                        id="name"
-                        className="form-control"
-                      />
-                      <br />
-                      <label htmlFor="left" className="grey-text font-weight-light">
-                        Left Column
-                      </label>
-                      <input
-                        value={this.state.leftC}
-                        onChange={this.handleChange('leftC')}
-                        type="text"
-                        id="left"
-                        className="form-control"
-                      />
-                      <br />
-                      <label htmlFor="right" className="grey-text font-weight-light">
-                        Right Column
-                      </label>
-                      <input
-                        value={this.state.rightC}
-                        onChange={this.handleChange('rightC')}
-                        type="text"
-                        id="right"
-                        className="form-control"
-                      />
-                      <br />
-                      <div className="text-center py-4 mt-3" />
-                    </form>
-                  </MDBCol>
-                </MDBRow>
-              </MDBContainer>
-            </MDBModalBody>
-            <MDBModalFooter>
-              <MDBBtn color="secondary" onClick={this.toggle}>
-                Close
-              </MDBBtn>
-              <MDBBtn className="btn btn-outline-purple" onClick={this.handleNewComparison}>
-                Confirm
-                <MDBIcon far icon="paper-plane" className="ml-2" />
-              </MDBBtn>
-            </MDBModalFooter>
-          </MDBModal>
-          {this.props.comparisons.map(c => (
-            <Comparison
-              key={c.comparison_id}
-              removeItem={this.handleRemoveItem}
-              newItem={this.handleNewItem}
-              comparison={c}
-              remove={this.handleRemoveComparison}
-            />
-          ))}
-        </MDBContainer>
+      <div
+        className="main"
+        style={{
+          width: ' 100%',
+          marginTop: '100px',
+          backgroundColor: '#1c2331',
+          minHeight: '100vh',
+          height: '100%',
+        }}>
+        <div className={styles.container}>
+          <MDBContainer className="white-text">
+            <MDBBtn color="green" size="lg" className="z-depth-3" onClick={this.toggle}>
+              New Comparison <MDBIcon icon="plus" className="ml-3" />
+            </MDBBtn>
+            <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="left">
+              <MDBModalHeader className="black-text" toggle={this.toggle}>
+                Fill the New Comparison info:
+              </MDBModalHeader>
+              <MDBModalBody className="black-text">
+                <MDBContainer>
+                  <MDBRow>
+                    <MDBCol md="12">
+                      <form>
+                        <label htmlFor="name" className="grey-text font-weight-light">
+                          Comparison Name
+                        </label>
+                        <input
+                          value={this.state.name}
+                          onChange={this.handleChange('name')}
+                          type="text"
+                          id="name"
+                          className="form-control"
+                        />
+                        <br />
+                        <label htmlFor="left" className="grey-text font-weight-light">
+                          Left Column
+                        </label>
+                        <input
+                          value={this.state.leftC}
+                          onChange={this.handleChange('leftC')}
+                          type="text"
+                          id="left"
+                          className="form-control"
+                        />
+                        <br />
+                        <label htmlFor="right" className="grey-text font-weight-light">
+                          Right Column
+                        </label>
+                        <input
+                          value={this.state.rightC}
+                          onChange={this.handleChange('rightC')}
+                          type="text"
+                          id="right"
+                          className="form-control"
+                        />
+                        <br />
+                        <div className="text-center py-4 mt-3" />
+                      </form>
+                    </MDBCol>
+                  </MDBRow>
+                </MDBContainer>
+              </MDBModalBody>
+              <MDBModalFooter>
+                <MDBBtn color="secondary" onClick={this.toggle}>
+                  Close
+                </MDBBtn>
+                <MDBBtn className="btn btn-outline-purple" onClick={this.handleNewComparison}>
+                  Confirm
+                  <MDBIcon far icon="paper-plane" className="ml-2" />
+                </MDBBtn>
+              </MDBModalFooter>
+            </MDBModal>
+            {this.props.comparisons.map(c => (
+              <Comparison
+                key={c.comparison_id}
+                removeItem={this.handleRemoveItem}
+                newItem={this.handleNewItem}
+                comparison={c}
+                remove={this.handleRemoveComparison}
+              />
+            ))}
+          </MDBContainer>
+        </div>
       </div>
     );
   }
