@@ -72,7 +72,6 @@ var controller = {
         });
       }
     })
-
   },
   addGraphicItem: function (req, res) {
     jwt.verify(req.token, 'mindnote', (err, authData) => {
@@ -94,7 +93,6 @@ var controller = {
         });
       }
     })
-
   },
   removeGraphicItem: function (req, res) {
     jwt.verify(req.token, 'mindnote', (err, authData) => {
@@ -111,9 +109,7 @@ var controller = {
         });
       }
     })
-
   },
-
 };
 
 module.exports = controller;

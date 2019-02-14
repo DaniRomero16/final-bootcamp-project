@@ -51,6 +51,40 @@ class NavBar extends Component {
           <MDBNavbarToggler onClick={this.toggleCollapse('navbarCollapse3')} />
           <MDBCollapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar>
             <MDBNavbarNav right>
+              {this.props.logged ? (
+                <React.Fragment>
+                  <MDBNavItem>
+                    <MDBNavLink className="waves-effect waves-light" to="/diary">
+                      <MDBIcon icon="book-open" className="mr-1" />
+                      Diary
+                    </MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink className="waves-effect waves-light" to="/goals">
+                      <MDBIcon icon="bullseye" className="mr-1" />
+                      Goals
+                    </MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink className="waves-effect waves-light" to="/graphics">
+                      <MDBIcon icon="chart-line" className="mr-1" />
+                      Graphics
+                    </MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink className="waves-effect waves-light" to="/comparisons">
+                      <MDBIcon icon="exchange-alt" className="mr-1" />
+                      Comparisons
+                    </MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink className="waves-effect waves-light" to="/lists">
+                      <MDBIcon icon="tasks" className="mr-1" />
+                      List
+                    </MDBNavLink>
+                  </MDBNavItem>
+                </React.Fragment>
+              ) : null}
               <MDBNavItem>
                 <MDBNavLink className="waves-effect waves-light" to="#!">
                   <MDBIcon icon="envelope" className="mr-1" />

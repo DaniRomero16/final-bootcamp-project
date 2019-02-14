@@ -83,10 +83,6 @@ export class Graphic extends Component {
         },
       ],
     };
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     return (
       <MDBRow className="my-5 mx-4">
         <MDBCol size="12" className="z-depth-2 p-5 white-text">
