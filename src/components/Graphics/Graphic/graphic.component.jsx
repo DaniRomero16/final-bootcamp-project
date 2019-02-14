@@ -13,12 +13,14 @@ import {
   MDBModalBody,
   MDBContainer,
 } from 'mdbreact';
+
 export class Graphic extends Component {
   state = {
     modal: false,
     modal2: false,
     value: '4',
   };
+
   handleRemove = () => {
     this.props.remove(this.props.graphic.graphic_id);
     this.setState({
@@ -81,7 +83,10 @@ export class Graphic extends Component {
         },
       ],
     };
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     return (
       <MDBRow className="my-5 mx-4">
         <MDBCol size="12" className="z-depth-2 p-5 white-text">

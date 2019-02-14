@@ -22,6 +22,9 @@ class Graphics extends Component {
     modal: false,
     name: '',
   };
+  componentDidUpdate(next) {
+    return true;
+  }
   componentDidMount() {
     this.props.loadGraphics();
   }
@@ -51,9 +54,6 @@ class Graphics extends Component {
   handleNewItem = item => {
     this.props.newItem(item);
     this.props.loadGraphics();
-    this.setState({
-      name: '',
-    });
   };
 
   handleRemoveGraphic = id => {
