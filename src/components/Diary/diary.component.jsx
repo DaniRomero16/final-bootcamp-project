@@ -23,6 +23,7 @@ class Diary extends PureComponent {
     title: '',
     content: '',
   };
+
   componentDidMount() {
     this.props.loadPosts();
   }
@@ -38,7 +39,6 @@ class Diary extends PureComponent {
       content: this.state.content,
     });
     this.setState({
-      modal: !this.state.modal,
       title: '',
       content: '',
     });
@@ -48,11 +48,6 @@ class Diary extends PureComponent {
     this.props.loadPosts();
   };
 
-  toggle = () => {
-    this.setState({
-      modal: !this.state.modal,
-    });
-  };
   render() {
     return (
       <div
@@ -66,62 +61,50 @@ class Diary extends PureComponent {
         }}>
         <div className={styles.container}>
           <MDBContainer className="white-text">
-            <MDBBtn className="z-depth-2 ml-5" color="pink" size="lg" onClick={this.toggle}>
-              New Post <MDBIcon icon="plus" className="ml-3" />
-            </MDBBtn>
-            <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="left">
-              <MDBModalHeader className="black-text" toggle={this.toggle}>
-                Fill the New Post info:
-              </MDBModalHeader>
-              <MDBModalBody className="black-text">
-                <MDBContainer>
-                  <MDBRow>
-                    <MDBCol md="12">
-                      <form>
-                        <label htmlFor="title" className="grey-text font-weight-light">
-                          Post title
-                        </label>
-                        <input
-                          value={this.state.title}
-                          onChange={this.handleChange('title')}
-                          type="text"
-                          id="title"
-                          className="form-control"
-                        />
-                        <br />
-                        <label htmlFor="content" className="grey-text font-weight-light">
-                          Post content
-                        </label>
-                        <textarea
-                          value={this.state.content}
-                          onChange={this.handleChange('content')}
-                          type="text"
-                          id="content"
-                          className="form-control"
-                          rows="7"
-                        />
-                        <div className="text-center py-4 mt-3" />
-                      </form>
-                    </MDBCol>
-                  </MDBRow>
-                </MDBContainer>
-              </MDBModalBody>
-              <MDBModalFooter>
-                <MDBBtn color="secondary" onClick={this.toggle}>
-                  Close
-                </MDBBtn>
-                <MDBBtn className="btn btn-outline-purple" onClick={this.handleNewPost}>
-                  Confirm
-                  <MDBIcon far icon="paper-plane" className="ml-2" />
-                </MDBBtn>
-              </MDBModalFooter>
-            </MDBModal>
-            {this.props.posts
-              .slice(0)
-              .reverse()
-              .map(p => (
-                <Post key={p.post_id} post={p} remove={this.handleRemovePost} />
-              ))}
+            <MDBRow>
+              <MDBCol sm="12" md="4" className="mt-5">
+                <h2 className="h5-responsive mb-3">
+                  Which are you today thoughts?, <b>{this.props.user.name}</b>
+                </h2>
+                <form>
+                  <label htmlFor="title" className="grey-text font-weight-light">
+                    Post title
+                  </label>
+                  <input
+                    value={this.state.title}
+                    onChange={this.handleChange('title')}
+                    type="text"
+                    id="title"
+                    className="form-control"
+                  />
+                  <br />
+                  <label htmlFor="content" className="grey-text font-weight-light">
+                    Post content
+                  </label>
+                  <textarea
+                    value={this.state.content}
+                    onChange={this.handleChange('content')}
+                    id="content"
+                    className="form-control"
+                    rows={7}
+                  />
+                  <div className="text-center py-4 mt-3">
+                    <MDBBtn className="btn btn-outline-blue" onClick={this.handleNewPost}>
+                      Confirm
+                      <MDBIcon far icon="paper-plane" className="ml-2" />
+                    </MDBBtn>
+                  </div>
+                </form>
+              </MDBCol>
+              <MDBCol sm="12" md="8">
+                {this.props.posts
+                  .slice(0)
+                  .reverse()
+                  .map(p => (
+                    <Post key={p.post_id} post={p} remove={this.handleRemovePost} />
+                  ))}
+              </MDBCol>
+            </MDBRow>
           </MDBContainer>
         </div>
       </div>

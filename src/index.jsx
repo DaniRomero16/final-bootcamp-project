@@ -1,12 +1,12 @@
 import React from 'react';
+import 'babel-polyfill';
 import { render } from 'react-dom';
 import { hot } from 'react-hot-loader';
+
+import 'react-sweet-progress/lib/style.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
-import 'react-sweet-progress/lib/style.css';
-import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-
 import { Router } from '@Routes';
 
 const HotReload = hot(module)(Router);

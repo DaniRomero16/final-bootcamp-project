@@ -12,7 +12,7 @@ import {
   ConnectedGraphics,
   ConnectedLists,
 } from '@Components';
-import { FrontPage, ConnectedLogin, Profile } from '@Routes';
+import { FrontPage, ConnectedLogin, ConnectedProfile } from '@Routes';
 import PrivateRoute from './privateroute';
 
 // Import local resources
@@ -33,7 +33,7 @@ export class Router extends Component {
             <Route exact path="/" component={FrontPage} />
             <Route exact path="/login" component={ConnectedLogin} />
             <Switch>
-              <PrivateRoute path="/profile" component={Profile} />
+              <PrivateRoute path="/profile" component={ConnectedProfile} />
             </Switch>
             <Switch>
               <PrivateRoute path="/diary" component={ConnectedDiary} />
