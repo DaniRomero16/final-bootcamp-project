@@ -51,7 +51,6 @@ class Comparisons extends PureComponent {
       leftC: '',
       rightC: '',
     });
-    this.props.loadComparisons();
   };
   handleRemoveItem = id => {
     this.props.removeItem(id);
@@ -65,7 +64,6 @@ class Comparisons extends PureComponent {
 
   handleRemoveComparison = id => {
     this.props.deleteComparison(id);
-    this.props.loadComparisons();
   };
 
   toggle = () => {
@@ -74,7 +72,6 @@ class Comparisons extends PureComponent {
     });
   };
   render() {
-    console.log(this.props);
     return (
       <div
         className="main"
