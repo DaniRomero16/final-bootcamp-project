@@ -75,27 +75,27 @@ export class Comparison extends PureComponent {
   render() {
     console.log(this.props);
     return (
-      <MDBRow className="my-5 mx-4">
-        <MDBCol size="12" className="z-depth-2 p-5 white-text">
+      <MDBRow className="my-3 mx-3">
+        <MDBCol size="12" className="z-depth-2 p-4 white-text">
           <MDBRow>
             <MDBCol sm="12" className="justify-content-center">
-              <p className="h3-responsive text-center">
+              <h2 className="h2-responsive text-center">
                 {this.props.comparison.name}
-                <MDBBtn flat className="text-right ml-4 z-depth-1" onClick={this.toggle}>
+                <MDBBtn size="sm" flat className="text-right ml-4 z-depth-1" onClick={this.toggle}>
                   <MDBIcon icon="trash-alt" className="" />
                 </MDBBtn>
-              </p>
+              </h2>
             </MDBCol>
           </MDBRow>
           <hr className="my-3" />
           <MDBRow>
             <MDBCol sm="12" md="6" className="justify-content-center">
-              <p className="h3-responsive text-center">
+              <h5 className="h5-responsive text-center">
                 {this.props.comparison.leftC}{' '}
-                <MDBBtn color="green" size="sm" className="z-depth-1" onClick={this.toggle2}>
-                  New Item <MDBIcon icon="plus" className="ml-1" />
+                <MDBBtn color="blue-grey" size="sm" className="z-depth-1" onClick={this.toggle2}>
+                  <MDBIcon icon="plus" className="ml-1" />
                 </MDBBtn>
-              </p>
+              </h5>
               <hr className="my-3" />
               <MDBListGroup style={{ width: '100%', color: 'black', fontSize: '1.5rem' }}>
                 {this.props.comparison.left.map(i => {
@@ -105,12 +105,12 @@ export class Comparison extends PureComponent {
               </MDBListGroup>
             </MDBCol>
             <MDBCol sm="12" md="6" className="justify-content-center">
-              <p className="h3-responsive text-center">
+              <h5 className="h5-responsive text-center">
                 {this.props.comparison.rightC}
-                <MDBBtn color="green" size="sm" className="z-depth-1" onClick={this.toggle3}>
-                  New Item <MDBIcon icon="plus" className="ml-1" />
+                <MDBBtn color="blue-grey" size="sm" className="z-depth-1" onClick={this.toggle3}>
+                  <MDBIcon icon="plus" className="ml-1" />
                 </MDBBtn>
-              </p>
+              </h5>
               <hr className="my-3" />
               <MDBListGroup style={{ width: '100%', color: 'black', fontSize: '1.5rem' }}>
                 {this.props.comparison.right.map(i => {
@@ -121,7 +121,11 @@ export class Comparison extends PureComponent {
             </MDBCol>
           </MDBRow>
 
-          <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="bottom">
+          <MDBModal
+            isOpen={this.state.modal}
+            toggle={this.toggle}
+            position="bottom"
+            className="mt-5">
             <MDBModalHeader className="black-text" toggle={this.toggle}>
               Confirm deleting this Comparison
             </MDBModalHeader>

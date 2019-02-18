@@ -49,19 +49,19 @@ export class Goal extends Component {
   };
   render() {
     return (
-      <MDBRow className="my-5 mx-4">
+      <MDBRow className="my-4 mx-4">
         <MDBCol size="12" className="z-depth-2 p-5 white-text">
           <MDBRow>
             <MDBCol sm="12" md="6">
-              <p className="h3-responsive">
+              <p className="h4-responsive">
                 {this.props.goal.name}
-                <MDBBtn flat className="text-right ml-4 z-depth-1" onClick={this.toggle}>
+                <MDBBtn size="sm" flat className="text-right ml-4 z-depth-1" onClick={this.toggle}>
                   <MDBIcon icon="trash-alt" className="" />
                 </MDBBtn>
               </p>
             </MDBCol>
             <MDBCol sm="12" md="6">
-              <p className="h4-responsive text-right">
+              <p className="h5-responsive text-right">
                 DEADLINE:
                 {' ' +
                   moment(this.props.goal.deadline)
@@ -72,7 +72,7 @@ export class Goal extends Component {
           </MDBRow>
 
           <MDBBtn
-            size="m"
+            size="sm"
             outline
             color="warning"
             className=""
@@ -81,14 +81,14 @@ export class Goal extends Component {
             <MDBIcon icon="minus" className="" />
           </MDBBtn>
           <MDBBtn
-            size="m"
+            size="sm"
             outline
             color="info"
             disabled={this.props.goal.progress === 100}
             onClick={this.handleUpdate('+')}>
             <MDBIcon icon="plus" className="" />
           </MDBBtn>
-          <hr className="my-5" />
+          <hr className="my-3" />
           <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="bottom">
             <MDBModalHeader className="black-text" toggle={this.toggle}>
               Confirm deleting this Goal

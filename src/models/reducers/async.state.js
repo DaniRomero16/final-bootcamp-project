@@ -5,5 +5,5 @@ export const initialAsyncState = {
   goals: [],
   comparisons: [],
   graphics: [],
-  lists: [],
+  tasks: [],
 };

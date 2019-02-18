@@ -3,7 +3,7 @@ import styles from './Goals.styles.css';
 import { connect } from 'react-redux';
 
 import { getGoals, addGoal, removeGoal, updateGoal as up } from '@Models';
-
+import { goals } from '@Assets';
 import { Goal } from '@Components';
 import {
   MDBContainer,
@@ -15,6 +15,13 @@ import {
   MDBIcon,
   MDBRow,
   MDBCol,
+  MDBCard,
+  MDBCardImage,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBView,
+  MDBMask,
 } from 'mdbreact';
 
 class Goals extends PureComponent {
@@ -53,7 +60,6 @@ class Goals extends PureComponent {
   };
 
   handleGoalProgress = goal => {
-    console.log('aqui llego');
     this.props.updateGoal(goal);
     this.props.loadGoals();
   };
@@ -76,9 +82,47 @@ class Goals extends PureComponent {
         }}>
         <div className={styles.container}>
           <MDBContainer className="white-text">
-            <MDBBtn color="amber" size="lg" className="z-depth-3" onClick={this.toggle}>
-              New Goal <MDBIcon icon="plus" className="ml-3" />
-            </MDBBtn>
+            <p className="text-white h1-responsive">Your Goals</p>
+            <hr className="my-3" />
+            <MDBRow>
+              <MDBCol sm="12" md="4" className="mt-4">
+                <MDBCard className="z-depth-2" style={{ width: '22rem' }}>
+                  <MDBView>
+                    <MDBCardImage className="img-fluid" src={goals} waves />
+                    <MDBMask overlay="black-light" className="flex-center">
+                      <h3 className=" h3-responsive white-text">Follow</h3>
+                    </MDBMask>
+                  </MDBView>
+                  <MDBCardBody>
+                    <MDBCardText>
+                      Some quick example text to build on the card title and make up the bulk of the
+                      card&apos;s content.
+                    </MDBCardText>
+                    <MDBBtn
+                      color="elegant"
+                      style={{
+                        width: '100%',
+                      }}
+                      size="lg"
+                      className="z-depth-3"
+                      onClick={this.toggle}>
+                      New Goal <MDBIcon icon="plus" className="ml-3" />
+                    </MDBBtn>
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+              <MDBCol sm="12" md="8">
+                {this.props.goals.map(p => (
+                  <Goal
+                    key={p.goal_id}
+                    update={this.handleGoalProgress}
+                    goal={p}
+                    remove={this.handleRemoveGoal}
+                  />
+                ))}
+              </MDBCol>
+            </MDBRow>
+
             <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="left">
               <MDBModalHeader className="black-text" toggle={this.toggle}>
                 Fill the New Goal info:
@@ -116,10 +160,9 @@ class Goals extends PureComponent {
                         <textarea
                           value={this.state.content}
                           onChange={this.handleChange('content')}
-                          type="text"
                           id="content"
                           className="form-control"
-                          rows="4"
+                          rows={4}
                         />
                         <div className="text-center py-4 mt-3" />
                       </form>
@@ -137,14 +180,6 @@ class Goals extends PureComponent {
                 </MDBBtn>
               </MDBModalFooter>
             </MDBModal>
-            {this.props.goals.map(p => (
-              <Goal
-                key={p.goal_id}
-                update={this.handleGoalProgress}
-                goal={p}
-                remove={this.handleRemoveGoal}
-              />
-            ))}
           </MDBContainer>
         </div>
       </div>

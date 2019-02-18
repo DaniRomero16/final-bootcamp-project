@@ -35,11 +35,10 @@ app.get("/graphic/get", verifyToken, graphicController.getGraphics);
 app.post("/graphic_item/new", verifyToken, graphicController.addGraphicItem);
 app.post("/graphic_item/remove", verifyToken, graphicController.removeGraphicItem);
 
-app.post("/list/new", verifyToken, listController.addList);
-app.post("/list/remove", verifyToken, listController.removeList);
-app.get("/list/get", verifyToken, listController.getLists);
-app.post("/list_item/new", verifyToken, listController.addListItem);
-app.post("/list_item/remove", verifyToken, listController.removeListItem);
+app.post("/task/new", verifyToken, listController.addTask);
+app.post("/task/remove", verifyToken, listController.removeTask);
+app.get("/task/get", verifyToken, listController.getTasks);
+app.post("/task/update", verifyToken, listController.updateTask);
 //token format
 //authorization: bearer <access_token>
 

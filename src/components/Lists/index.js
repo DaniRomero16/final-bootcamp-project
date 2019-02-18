@@ -1,2 +1,2 @@
 export * from './lists.component'
-export * from './List'
+export * from './Task'

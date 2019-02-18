@@ -61,6 +61,8 @@ class Diary extends PureComponent {
         }}>
         <div className={styles.container}>
           <MDBContainer className="white-text">
+            <p className="text-white h1-responsive">Your Posts</p>
+            <hr className="my-3" />
             <MDBRow>
               <MDBCol sm="12" md="4" className="mt-5">
                 <h2 className="h5-responsive mb-3">

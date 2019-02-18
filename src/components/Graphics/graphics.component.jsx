@@ -15,7 +15,15 @@ import {
   MDBIcon,
   MDBRow,
   MDBCol,
+  MDBCard,
+  MDBView,
+  MDBCardImage,
+  MDBMask,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
 } from 'mdbreact';
+import { graphs } from '@Assets';
 
 class Graphics extends Component {
   state = {
@@ -80,9 +88,48 @@ class Graphics extends Component {
         }}>
         <div className={styles.container}>
           <MDBContainer className="white-text">
-            <MDBBtn color="green" size="lg" className="z-depth-3" onClick={this.toggle}>
-              New Graphic <MDBIcon icon="plus" className="ml-3" />
-            </MDBBtn>
+            <p className="text-white h1-responsive">Your Graphics</p>
+            <hr className="my-3" />
+            <MDBRow>
+              <MDBCol sm="12" md="4" className="mt-4">
+                <MDBCard className="z-depth-2" style={{ width: '22rem' }}>
+                  <MDBView>
+                    <MDBCardImage className="img-fluid" src={graphs} waves />
+                    <MDBMask overlay="black-light" className="flex-center">
+                      <h3 className=" h3-responsive white-text">Track Yourself</h3>
+                    </MDBMask>
+                  </MDBView>
+                  <MDBCardBody>
+                    <MDBCardText>
+                      Some quick example text to build on the card title and make up the bulk of the
+                      card&apos;s content.
+                    </MDBCardText>
+                    <MDBBtn
+                      color="elegant"
+                      style={{
+                        width: '100%',
+                      }}
+                      size="lg"
+                      className="z-depth-3"
+                      onClick={this.toggle}>
+                      New Graphic <MDBIcon icon="plus" className="ml-3" />
+                    </MDBBtn>
+                  </MDBCardBody>
+                </MDBCard>
+              </MDBCol>
+              <MDBCol sm="12" md="8">
+                {graph.map(c => (
+                  <Graphic
+                    key={c.graphic_id}
+                    removeItem={this.handleRemoveItem}
+                    newItem={this.handleNewItem}
+                    graphic={c}
+                    remove={this.handleRemoveGraphic}
+                  />
+                ))}
+              </MDBCol>
+            </MDBRow>
+
             <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="left">
               <MDBModalHeader className="black-text" toggle={this.toggle}>
                 Fill the New Graphic info:
@@ -117,15 +164,6 @@ class Graphics extends Component {
                 </MDBBtn>
               </MDBModalFooter>
             </MDBModal>
-            {graph.map(c => (
-              <Graphic
-                key={c.graphic_id}
-                removeItem={this.handleRemoveItem}
-                newItem={this.handleNewItem}
-                graphic={c}
-                remove={this.handleRemoveGraphic}
-              />
-            ))}
           </MDBContainer>
         </div>
       </div>

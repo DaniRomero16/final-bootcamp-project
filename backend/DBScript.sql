@@ -72,26 +72,18 @@ CREATE TABLE graphic_item (
     FOREIGN KEY item_graphic_fk(graphic_id) REFERENCES graphic(graphic_id) on delete cascade
 );
 
-CREATE TABLE todolist (
+CREATE TABLE task (
     user_id int not null,
-    list_id int auto_increment,
+    task_id int auto_increment,
     name VARCHAR(150) NOT NULL,
 	description text null,
-    PRIMARY KEY(list_id),
-    FOREIGN KEY list_user_fk(user_id) REFERENCES user(user_id) on delete cascade
+    state ENUM('todo','progress', 'completed') NOT NULL default 'todo',
+    color varchar(20) not null,
+    PRIMARY KEY(task_id),
+    FOREIGN KEY task_user_fk(user_id) REFERENCES user(user_id) on delete cascade
 );
 
-CREATE TABLE list_item (
-    list_id int not null,
-    item_id int auto_increment,
-    name VARCHAR(150) NOT NULL,
-    state ENUM('todo','inprogress','completed') NOT NULL,
-	description text null,
-    PRIMARY KEY(item_id),
-    FOREIGN KEY item_list_fk(list_id) REFERENCES todolist(list_id) on delete cascade
-);
-
-
+UPDATE task SET state = 'progress' WHERE task_id = 1;
 
 use mindnote;
 select * from user;

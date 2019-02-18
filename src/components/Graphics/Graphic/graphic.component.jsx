@@ -84,19 +84,19 @@ export class Graphic extends Component {
       ],
     };
     return (
-      <MDBRow className="my-5 mx-4">
-        <MDBCol size="12" className="z-depth-2 p-5 white-text">
+      <MDBRow className="my-4 mx-3">
+        <MDBCol size="12" className="z-depth-2 p-4 white-text">
           <MDBRow>
             <MDBCol sm="12" className="justify-content-center">
-              <p className="h3-responsive text-center">
+              <p className="h4-responsive text-center">
                 {this.props.graphic.name}
-                <MDBBtn flat className="text-right ml-4 z-depth-1" onClick={this.toggle}>
+                <MDBBtn size="sm" flat className="text-right ml-4 z-depth-1" onClick={this.toggle}>
                   <MDBIcon icon="trash-alt" className="" />
                 </MDBBtn>
               </p>
             </MDBCol>
           </MDBRow>
-          <hr className="my-3" />
+          <hr className="mb-1" />
           <MDBRow>
             <MDBContainer>
               <MDBBtn color="green" size="sm" className="z-depth-1" onClick={this.toggle2}>
