@@ -56,7 +56,6 @@ class Goals extends PureComponent {
   };
   handleRemoveGoal = id => {
     this.props.deleteGoal(id);
-    this.props.loadGoals();
   };
 
   handleGoalProgress = goal => {

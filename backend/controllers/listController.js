@@ -14,6 +14,7 @@ var controller = {
           } else {
             let task = {
               task_id: result.insertId,
+              state: 'todo',
               ...req.body
             }
             return res.send(task);

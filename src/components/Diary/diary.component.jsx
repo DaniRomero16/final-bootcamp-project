@@ -45,7 +45,6 @@ class Diary extends PureComponent {
   };
   handleRemovePost = id => {
     this.props.deletePost(id);
-    this.props.loadPosts();
   };
 
   render() {

@@ -19,6 +19,11 @@ const GetGoalsSucc = payload => ({
   type: 'GET_GOALS_SUCCESS'
 });
 
+const GetTasksSucc = payload => ({
+  payload,
+  type: 'GET_TASKS_SUCCESS'
+});
+
 const GetComparisonsSucc = payload => ({
   payload,
   type: 'GET_COMP_SUCCESS'
@@ -35,9 +40,18 @@ const AddPostSucc = payload => ({
   payload,
   type: 'ADD_POST_SUCCESS'
 });
+
+const AddTaskSucc = payload => ({
+  payload,
+  type: 'ADD_TASK_SUCCESS'
+});
 const removePostSucc = payload => ({
   payload,
   type: 'REMOVE_POST_SUCCESS'
+});
+const removeTaskSucc = payload => ({
+  payload,
+  type: 'REMOVE_TASK_SUCCESS'
 });
 
 const AddGoalSucc = payload => ({
@@ -52,6 +66,11 @@ const removeGoalSucc = payload => ({
 const UpdateGoal = payload => ({
   payload,
   type: 'UPDATE_GOAL'
+});
+
+const UpdateTask = payload => ({
+  payload,
+  type: 'UPDATE_TASK'
 });
 
 const AddComparisonSucc = payload => ({
@@ -106,6 +125,17 @@ export const getGoals = () => dispatch => {
 
 };
 
+export const getTasks = () => dispatch => {
+  axios.get("http://localhost:3001/task/get")
+    .then(response => {
+      dispatch(GetTasksSucc(response.data))
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+};
+
 
 const LogoutUserS = payload => ({
   payload,
@@ -117,6 +147,18 @@ export const addPost = (post) => dispatch => {
     .then(response => {
       console.log(response);
       dispatch(AddPostSucc(response.data))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};
+
+export const addTask = (task) => dispatch => {
+  axios.post("http://localhost:3001/task/new", task)
+    .then(response => {
+      console.log(response);
+      dispatch(AddTaskSucc(response.data))
     })
     .catch(err => {
       console.log(err);
@@ -136,6 +178,17 @@ export const updateGoal = (goal) => dispatch => {
 
 };
 
+export const updateTask = (task) => dispatch => {
+  axios.post("http://localhost:3001/task/update", task)
+    .then(response => {
+      console.log(response);
+      dispatch(UpdateTask(task))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};
 export const removePost = (post) => dispatch => {
   axios.post("http://localhost:3001/post/remove", {
       id: post
@@ -144,6 +197,21 @@ export const removePost = (post) => dispatch => {
       console.log(response)
       dispatch(removePostSucc({
         id: post
+      }))
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+};
+export const removeTask = (task) => dispatch => {
+  axios.post("http://localhost:3001/task/remove", {
+      id: task
+    })
+    .then(response => {
+      console.log(response)
+      dispatch(removeTaskSucc({
+        id: task
       }))
     })
     .catch(err => {

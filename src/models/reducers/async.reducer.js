@@ -25,7 +25,6 @@ export function asyncReducer(state = initial, action) {
           console.log(decoded)
         }
       });
-      console.log(user)
       return {
         ...state,
         user,
@@ -76,6 +75,25 @@ export function asyncReducer(state = initial, action) {
       return {
         ...state,
         posts: [...state.posts, action.payload],
+      }
+    case 'ADD_TASK_SUCCESS':
+      return {
+        ...state,
+        tasks: [...state.tasks, action.payload],
+      }
+    case 'GET_TASKS_SUCCESS':
+      return {
+        ...state,
+        tasks: action.payload,
+      }
+    case 'REMOVE_TASK_SUCCESS':
+      return {
+        ...state,
+        tasks: state.tasks.filter(value => value.task_id !== action.payload.id),
+      }
+    case 'UPDATE_TASK':
+      return {
+        ...state,
       }
     case 'ADD_GOAL_SUCCESS':
       return {

@@ -48,15 +48,11 @@ class Lists extends PureComponent {
     this.setState({
       modal: !this.state.modal,
       name: '',
-      leftC: '',
-      rightC: '',
     });
-    this.props.loadTasks();
   };
 
   handleRemoveTask = id => {
     this.props.deleteTask(id);
-    this.props.loadTasks();
   };
 
   toggle = () => {
@@ -76,7 +72,7 @@ class Lists extends PureComponent {
           height: '100%',
         }}>
         <div className={styles.container}>
-          <MDBContainer className="white-text">
+          <MDBContainer fluid className="white-text">
             <p className="text-white h1-responsive">Your Tasks</p>
             <hr className="my-3" />
             <MDBRow>
@@ -131,28 +127,6 @@ class Lists extends PureComponent {
                           className="form-control"
                         />
                         <br />
-                        <label htmlFor="left" className="grey-text font-weight-light">
-                          Left Column
-                        </label>
-                        <input
-                          value={this.state.leftC}
-                          onChange={this.handleChange('leftC')}
-                          type="text"
-                          id="left"
-                          className="form-control"
-                        />
-                        <br />
-                        <label htmlFor="right" className="grey-text font-weight-light">
-                          Right Column
-                        </label>
-                        <input
-                          value={this.state.rightC}
-                          onChange={this.handleChange('rightC')}
-                          type="text"
-                          id="right"
-                          className="form-control"
-                        />
-                        <br />
                         <div className="text-center py-4 mt-3" />
                       </form>
                     </MDBCol>
@@ -180,7 +154,7 @@ const mapStateToProps = (state, props) => {
     ...props,
     logged: state.asyncReducer.isAuthenticated,
     user: state.asyncReducer.user,
-    lists: state.asyncReducer.lists,
+    tasks: state.asyncReducer.lists,
   };
 };
 
