@@ -29,7 +29,7 @@ export class CompareItem extends PureComponent {
         style={{ backgroundColor: 'rgb(28, 35, 49)' }}
         className="z-depth-2 white-text d-flex justify-content-between align-items-center">
         <h6>{this.props.item.name}</h6>
-        <MDBBtn size="sm" color="blue-grey" onClick={this.toggle}>
+        <MDBBtn size="sm" flat onClick={this.toggle}>
           <MDBIcon icon="trash-alt" />
         </MDBBtn>
         <MDBModal isOpen={this.state.modal} toggle={this.toggle} centered className="mt-5">

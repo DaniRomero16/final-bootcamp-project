@@ -6,3 +6,15 @@
   align-items: center;
   padding: 30px;
 }
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll {
+  margin-top: 5px;
+  max-height: 59vh;
+  min-height: 59vh;
+  width: 100%;
+  overflow: scroll;
+}

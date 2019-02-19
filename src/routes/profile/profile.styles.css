@@ -52,3 +52,16 @@
 .negro {
   color: black !important;
 }
+
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll {
+  margin-top: 5px;
+  max-height: 68vh;
+  min-height: 68vh;
+  width: 100%;
+  overflow: scroll;
+}

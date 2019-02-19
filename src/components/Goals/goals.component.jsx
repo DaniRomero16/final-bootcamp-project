@@ -73,7 +73,7 @@ class Goals extends PureComponent {
         className="main"
         style={{
           width: '100%',
-          minHeight: '100vh',
+          minHeight: '89vh',
           height: '100%',
           marginTop: '100px',
           backgroundColor: '#1c2331',
@@ -109,7 +109,7 @@ class Goals extends PureComponent {
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
-              <MDBCol sm="12" md="8">
+              <MDBCol className={styles.scroll} sm="12" md="8">
                 {this.props.goals.map(p => (
                   <Goal
                     key={p.goal_id}

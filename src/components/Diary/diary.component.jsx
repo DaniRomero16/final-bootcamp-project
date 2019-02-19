@@ -53,8 +53,8 @@ class Diary extends PureComponent {
         className="main"
         style={{
           width: ' 100%',
-          minHeight: '100vh',
           height: '100%',
+          minHeight: '89vh',
           marginTop: '100px',
           backgroundColor: '#1c2331',
         }}>
@@ -97,7 +97,7 @@ class Diary extends PureComponent {
                   </div>
                 </form>
               </MDBCol>
-              <MDBCol sm="12" md="8">
+              <MDBCol className={styles.scroll} sm="12" md="8">
                 {this.props.posts
                   .slice(0)
                   .reverse()

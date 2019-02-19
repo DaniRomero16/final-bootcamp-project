@@ -39,7 +39,7 @@ export class Task extends Component {
           <a onClick={this.toggle} className="text-right mx-2">
             X
           </a>
-          <MDBCardBody className="h5-responsive">{t.name}</MDBCardBody>
+          <MDBCardBody className="h4-responsive">{t.name}</MDBCardBody>
           <MDBCardText className="white-text" small muted>
             Last updated{' '}
             {moment(t.date)

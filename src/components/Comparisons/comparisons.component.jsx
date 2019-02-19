@@ -85,7 +85,7 @@ class Comparisons extends PureComponent {
           width: ' 100%',
           marginTop: '100px',
           backgroundColor: '#1c2331',
-          minHeight: '100vh',
+          minHeight: '89vh',
           height: '100%',
         }}>
         <div className={styles.container}>

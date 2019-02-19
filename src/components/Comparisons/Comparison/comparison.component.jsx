@@ -92,7 +92,7 @@ export class Comparison extends PureComponent {
             <MDBCol sm="12" md="6" className="justify-content-center">
               <h5 className="h5-responsive text-center">
                 {this.props.comparison.leftC}{' '}
-                <MDBBtn color="blue-grey" size="sm" className="z-depth-1" onClick={this.toggle2}>
+                <MDBBtn color="pink" size="sm" className="z-depth-1" onClick={this.toggle2}>
                   <MDBIcon icon="plus" className="ml-1" />
                 </MDBBtn>
               </h5>
@@ -106,7 +106,7 @@ export class Comparison extends PureComponent {
             <MDBCol sm="12" md="6" className="justify-content-center">
               <h5 className="h5-responsive text-center">
                 {this.props.comparison.rightC}
-                <MDBBtn color="blue-grey" size="sm" className="z-depth-1" onClick={this.toggle3}>
+                <MDBBtn color="pink" size="sm" className="z-depth-1" onClick={this.toggle3}>
                   <MDBIcon icon="plus" className="ml-1" />
                 </MDBBtn>
               </h5>

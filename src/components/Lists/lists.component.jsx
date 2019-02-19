@@ -110,7 +110,7 @@ class Lists extends PureComponent {
           width: ' 100%',
           marginTop: '100px',
           backgroundColor: '#1c2331',
-          minHeight: '100vh',
+          minHeight: '89vh',
           height: '100%',
         }}>
         <div className={styles.container}>
@@ -157,19 +157,21 @@ class Lists extends PureComponent {
                         To Do <MDBIcon icon="list" className="mx-3" />
                       </h2>
                       <Droppable
-                        style={{ width: '100%', minHeight: '650px' }}
+                        style={{ width: '100%', minHeight: '600px', marginBottom: '8px' }}
                         className="d-flex flex-column flex-column justify-content-start align-items-center"
                         types={['task']}
                         onDrop={this.onDrop.bind(this, 'todo')}>
-                        <MDBListGroup className="my-2" style={{ width: '90%' }}>
-                          {TODO.map(t => {
-                            return (
-                              <Draggable key={t.task_id} type="task" data={t.task_id}>
-                                <Task task={t} remove={this.handleRemoveTask} />
-                              </Draggable>
-                            );
-                          })}
-                        </MDBListGroup>
+                        <div style={{ width: '90%' }} className={styles.scroll}>
+                          <MDBListGroup style={{ width: '100%' }}>
+                            {TODO.map(t => {
+                              return (
+                                <Draggable key={t.task_id} type="task" data={t.task_id}>
+                                  <Task task={t} remove={this.handleRemoveTask} />
+                                </Draggable>
+                              );
+                            })}
+                          </MDBListGroup>
+                        </div>
                       </Droppable>
                     </MDBContainer>
                   </MDBCol>
@@ -185,19 +187,21 @@ class Lists extends PureComponent {
                         <MDBIcon icon="spinner" className="mx-3" />
                       </h2>
                       <Droppable
-                        style={{ width: '100%', minHeight: '650px' }}
+                        style={{ width: '100%', minHeight: '600px' }}
                         className="d-flex flex-column flex-column justify-content-start align-items-center"
                         types={['task']}
                         onDrop={this.onDrop.bind(this, 'progress')}>
-                        <MDBListGroup className="my-2" style={{ width: '90%' }}>
-                          {PROGG.map(t => {
-                            return (
-                              <Draggable key={t.task_id} type="task" data={t.task_id}>
-                                <Task task={t} remove={this.handleRemoveTask} />
-                              </Draggable>
-                            );
-                          })}
-                        </MDBListGroup>
+                        <div style={{ width: '90%' }} className={styles.scroll}>
+                          <MDBListGroup style={{ width: '100%' }}>
+                            {PROGG.map(t => {
+                              return (
+                                <Draggable key={t.task_id} type="task" data={t.task_id}>
+                                  <Task task={t} remove={this.handleRemoveTask} />
+                                </Draggable>
+                              );
+                            })}
+                          </MDBListGroup>
+                        </div>
                       </Droppable>
                     </MDBContainer>
                   </MDBCol>
@@ -212,19 +216,21 @@ class Lists extends PureComponent {
                         Completed <MDBIcon icon="check-square" className="mx-3" />
                       </h2>
                       <Droppable
-                        style={{ width: '100%', minHeight: '650px' }}
+                        style={{ width: '100%', minHeight: '600px' }}
                         className="d-flex flex-column flex-column justify-content-start align-items-center"
                         types={['task']}
                         onDrop={this.onDrop.bind(this, 'completed')}>
-                        <MDBListGroup className="my-2" style={{ width: '90%' }}>
-                          {COMP.map(t => {
-                            return (
-                              <Draggable key={t.task_id} type="task" data={t.task_id}>
-                                <Task task={t} remove={this.handleRemoveTask} />
-                              </Draggable>
-                            );
-                          })}
-                        </MDBListGroup>
+                        <div style={{ width: '90%' }} className={styles.scroll}>
+                          <MDBListGroup style={{ width: '100%' }}>
+                            {COMP.map(t => {
+                              return (
+                                <Draggable key={t.task_id} type="task" data={t.task_id}>
+                                  <Task task={t} remove={this.handleRemoveTask} />
+                                </Draggable>
+                              );
+                            })}
+                          </MDBListGroup>
+                        </div>
                       </Droppable>
                     </MDBContainer>
                   </MDBCol>

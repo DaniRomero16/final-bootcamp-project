@@ -78,10 +78,10 @@ class Graphics extends Component {
         className="main"
         style={{
           width: ' 100%',
-          minHeight: '100vh',
-          height: '100%',
           marginTop: '100px',
           backgroundColor: '#1c2331',
+          minHeight: '89vh',
+          height: '100%',
         }}>
         <div className={styles.container}>
           <MDBContainer className="white-text">
