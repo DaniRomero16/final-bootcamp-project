@@ -49,7 +49,6 @@ class Graphics extends Component {
       modal: !this.state.modal,
       name: '',
     });
-    this.props.loadGraphics();
   };
   handleRemoveItem = id => {
     this.props.removeItem(id);
@@ -61,12 +60,10 @@ class Graphics extends Component {
 
   handleNewItem = item => {
     this.props.newItem(item);
-    this.props.loadGraphics();
   };
 
   handleRemoveGraphic = id => {
     this.props.deleteGraphic(id);
-    this.props.loadGraphics();
   };
 
   toggle = () => {
@@ -92,7 +89,7 @@ class Graphics extends Component {
             <hr className="my-3" />
             <MDBRow>
               <MDBCol sm="12" md="4" className="mt-4">
-                <MDBCard className="z-depth-2" style={{ width: '22rem' }}>
+                <MDBCard className="z-depth-2" style={{ width: '100%' }}>
                   <MDBView>
                     <MDBCardImage className="img-fluid" src={graphs} waves />
                     <MDBMask overlay="black-light" className="flex-center">

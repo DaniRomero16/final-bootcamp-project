@@ -60,14 +60,12 @@ class Comparisons extends PureComponent {
       rightC: '',
     });
   };
-  handleRemoveItem = id => {
-    this.props.removeItem(id);
-    this.props.loadComparisons();
+  handleRemoveItem = item => {
+    this.props.removeItem(item);
   };
 
   handleNewItem = item => {
     this.props.newItem(item);
-    this.props.loadComparisons();
   };
 
   handleRemoveComparison = id => {
@@ -96,7 +94,7 @@ class Comparisons extends PureComponent {
             <hr className="my-3" />
             <MDBRow>
               <MDBCol sm="12" md="4" className="mt-4">
-                <MDBCard className="z-depth-2" style={{ width: '22rem' }}>
+                <MDBCard className="z-depth-2" style={{ width: '100%' }}>
                   <MDBView>
                     <MDBCardImage className="img-fluid" src={comparisons} waves />
                     <MDBMask overlay="black-light" className="flex-center">

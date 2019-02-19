@@ -16,7 +16,7 @@ export class CompareItem extends PureComponent {
     this.setState({
       modal: !this.state.modal,
     });
-    this.props.remove(this.props.item.item_id);
+    this.props.remove(this.props.item);
   };
   toggle = () => {
     this.setState({
@@ -24,7 +24,6 @@ export class CompareItem extends PureComponent {
     });
   };
   render() {
-    console.log(this.props);
     return (
       <MDBListGroupItem
         style={{ backgroundColor: 'rgb(28, 35, 49)' }}

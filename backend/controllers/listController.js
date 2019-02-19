@@ -64,7 +64,7 @@ var controller = {
       if (err) {
         res.sendStatus(403);
       } else {
-        let sql = `UPDATE task SET state = '${req.body.state}' WHERE task_id = ${req.body.id};`;
+        let sql = `UPDATE task SET state = '${req.body.state}', date = current_timestamp WHERE task_id = ${req.body.id};`;
         con.query(sql, function (err, result) {
           if (err) {
             return res.send(err);

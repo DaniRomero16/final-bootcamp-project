@@ -151,6 +151,66 @@ export function asyncReducer(state = initial, action) {
         graphics: action.payload,
       }
 
+
+
+    case 'ADD_COMPARE_ITEM':
+      return {
+        ...state,
+        comparisons: state.comparisons.map(c => {
+          if (c.comparison_id === action.payload.comparison_id) {
+            if (action.payload.side === 'left') {
+              return {
+                ...c,
+                left: [...c.left, action.payload]
+              }
+            } else {
+              return {
+                ...c,
+                right: [...c.right, action.payload]
+              }
+            }
+          } else {
+            return c;
+          }
+        }),
+      }
+
+    case 'REMOVE_COMPARE_ITEM':
+      return {
+        ...state,
+        comparisons: state.comparisons.map(c => {
+          if (c.comparison_id === action.payload.comparison_id) {
+            if (action.payload.side === 'left') {
+              return {
+                ...c,
+                left: c.left.filter(value => value.item_id !== action.payload.item_id),
+              }
+            } else {
+              return {
+                ...c,
+                right: c.right.filter(value => value.item_id !== action.payload.item_id),
+              }
+            }
+          } else {
+            return c;
+          }
+        }),
+      }
+    case 'ADD_GRAPHIC_ITEM':
+      return {
+        ...state,
+        graphics: state.graphics.map(g => {
+          if (g.graphic_id === action.payload.graphic_id) {
+            return {
+              ...g,
+              items: [...g.items, action.payload]
+            }
+          } else {
+            return g;
+          }
+        }),
+      }
+
     default:
       return {
         ...state

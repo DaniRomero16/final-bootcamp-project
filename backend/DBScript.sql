@@ -78,18 +78,24 @@ CREATE TABLE task (
     name VARCHAR(150) NOT NULL,
 	description text null,
     state ENUM('todo','progress', 'completed') NOT NULL default 'todo',
-    color varchar(20) not null,
+    color varchar(30) not null default 'primary',
+    date timestamp default current_timestamp,
     PRIMARY KEY(task_id),
     FOREIGN KEY task_user_fk(user_id) REFERENCES user(user_id) on delete cascade
 );
 
-UPDATE task SET state = 'progress' WHERE task_id = 1;
 
 use mindnote;
+alter table task
+drop column color;
+ALTER TABLE task
+add COLUMN date timestamp default current_timestamp ;
+insert into task (user_id,state, name) values (1,'completed','comp');
 select * from user;
 select * from post;
 select * from goal;
 select * from comparison;
 select * from compare_item;
+select * from task;
 
 

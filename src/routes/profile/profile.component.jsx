@@ -26,7 +26,7 @@ import {
   MDBBadge,
   MDBListGroup,
 } from 'mdbreact';
-import { getGraphics, getComparisons, getGoals, getPosts } from '@Models';
+import { getGraphics, getComparisons, getGoals, getPosts, getTasks } from '@Models';
 
 class Profile extends Component {
   componentDidMount() {
@@ -34,12 +34,22 @@ class Profile extends Component {
     this.props.loadPosts();
     this.props.loadComparisons();
     this.props.loadGraphics();
+    this.props.loadTasks();
   }
 
   render() {
     const COMPS = this.props.comparisons ? this.props.comparisons : [];
     const POSTS = this.props.posts
       ? this.props.posts.sort(function(a, b) {
+          if (moment(a.date).valueOf() < moment(b.date).valueOf()) {
+            return 1;
+          } else {
+            return -1;
+          }
+        })
+      : [];
+    const TASKS = this.props.tasks
+      ? this.props.tasks.sort(function(a, b) {
           if (moment(a.date).valueOf() < moment(b.date).valueOf()) {
             return 1;
           } else {
@@ -220,10 +230,16 @@ class Profile extends Component {
                 <MDBCardBody className={styles.fondoG}>
                   <Pie
                     data={{
-                      labels: ['Diary', 'Goals', 'Graphics', 'Comparisons', 'Lists'],
+                      labels: ['Diary', 'Goals', 'Graphics', 'Comparisons', 'Tasks'],
                       datasets: [
                         {
-                          data: [POSTS.length, GOALS.length, GRAPHIC.length, COMPS.length, 0],
+                          data: [
+                            POSTS.length,
+                            GOALS.length,
+                            GRAPHIC.length,
+                            COMPS.length,
+                            TASKS.length,
+                          ],
                           backgroundColor: [
                             '#F7464A',
                             '#46BFBD',
@@ -265,6 +281,7 @@ const mapStateToProps = (state, props) => {
     goals: state.asyncReducer.goals,
     posts: state.asyncReducer.posts,
     comparisons: state.asyncReducer.comparisons,
+    tasks: state.asyncReducer.tasks,
   };
 };
 
@@ -273,6 +290,7 @@ const mapDispatchToProps = {
   loadGoals: getGoals,
   loadPosts: getPosts,
   loadComparisons: getComparisons,
+  loadTasks: getTasks,
 };
 
 export const ConnectedProfile = connect(

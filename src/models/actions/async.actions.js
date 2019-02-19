@@ -170,7 +170,14 @@ export const updateGoal = (goal) => dispatch => {
   axios.post("http://localhost:3001/goal/update", goal)
     .then(response => {
       console.log(response);
-      dispatch(UpdateGoal(goal))
+      dispatch(UpdateGoal(goal));
+      axios.get("http://localhost:3001/goal/get")
+        .then(response => {
+          dispatch(GetGoalsSucc(response.data))
+        })
+        .catch(err => {
+          console.log(err)
+        })
     })
     .catch(err => {
       console.log(err);
@@ -183,6 +190,13 @@ export const updateTask = (task) => dispatch => {
     .then(response => {
       console.log(response);
       dispatch(UpdateTask(task))
+      axios.get("http://localhost:3001/task/get")
+        .then(response => {
+          dispatch(GetTasksSucc(response.data))
+        })
+        .catch(err => {
+          console.log(err)
+        })
     })
     .catch(err => {
       console.log(err);
@@ -264,7 +278,6 @@ export const removeComparison = (id) => dispatch => {
       id: id
     })
     .then(response => {
-      console.log(response)
       dispatch(removeComparisonSucc({
         id: id
       }))
@@ -278,7 +291,6 @@ export const removeComparison = (id) => dispatch => {
 export const addCompareItem = (comp) => dispatch => {
   axios.post("http://localhost:3001/compare_item/new", comp)
     .then(response => {
-      console.log(response);
       dispatch(AddCompareItemSucc(response.data))
     })
     .catch(err => {
@@ -287,15 +299,14 @@ export const addCompareItem = (comp) => dispatch => {
 
 };
 
-export const removeCompareItem = (id) => dispatch => {
+export const removeCompareItem = (item) => dispatch => {
   axios.post("http://localhost:3001/compare_item/remove", {
-      id: id
+      id: item.item_id
     })
     .then(response => {
-      console.log(response)
-      dispatch(removeCompareItemSucc({
-        id: id
-      }))
+      dispatch(removeCompareItemSucc(
+        item
+      ))
     })
     .catch(err => {
       console.log(err);
@@ -356,14 +367,12 @@ export const addGraphicItem = (graph) => dispatch => {
 
 };
 
-export const removeGraphicItem = (id) => dispatch => {
+export const removeGraphicItem = (item) => dispatch => {
   axios.post("http://localhost:3001/graphic_item/remove", {
-      id: id
+      id: item.graph_id
     })
     .then(response => {
-      dispatch(removeGraphicItemSucc({
-        id: id
-      }))
+      dispatch(removeGraphicItemSucc(item))
     })
     .catch(err => {
       console.log(err);

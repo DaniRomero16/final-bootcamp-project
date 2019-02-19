@@ -99,7 +99,6 @@ export class Comparison extends PureComponent {
               <hr className="my-3" />
               <MDBListGroup style={{ width: '100%', color: 'black', fontSize: '1.5rem' }}>
                 {this.props.comparison.left.map(i => {
-                  console.log('hola');
                   return <CompareItem key={i.item_id} remove={this.handleRemoveItem} item={i} />;
                 })}
               </MDBListGroup>
@@ -114,7 +113,6 @@ export class Comparison extends PureComponent {
               <hr className="my-3" />
               <MDBListGroup style={{ width: '100%', color: 'black', fontSize: '1.5rem' }}>
                 {this.props.comparison.right.map(i => {
-                  console.log('holA');
                   return <CompareItem key={i.item_id} remove={this.handleRemoveItem} item={i} />;
                 })}
               </MDBListGroup>
