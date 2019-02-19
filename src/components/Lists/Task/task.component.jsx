@@ -49,7 +49,7 @@ export class Task extends Component {
         </MDBCard>
         <MDBModal isOpen={this.state.modal} toggle={this.toggle} position="bottom">
           <MDBModalHeader className="black-text" toggle={this.toggle}>
-            Confirm deleting this Post
+            Confirm deleting this Task
           </MDBModalHeader>
 
           <MDBModalFooter>
