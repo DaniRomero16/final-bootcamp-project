@@ -18,7 +18,6 @@ import {
   MDBCard,
   MDBCardImage,
   MDBCardBody,
-  MDBCardTitle,
   MDBCardText,
   MDBView,
   MDBMask,

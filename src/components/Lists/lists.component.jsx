@@ -21,10 +21,6 @@ import {
   MDBCardBody,
   MDBCardText,
   MDBListGroup,
-  MDBListGroupItem,
-  MDBFormInline,
-  MDBInput,
-  MDBNavLink,
 } from 'mdbreact';
 import moment from 'moment';
 import { Draggable, Droppable } from 'react-drag-and-drop';

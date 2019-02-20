@@ -4,3 +4,7 @@ export const goals = require('./goals.jpg');
 export const lists = require('./lists.jpg');
 export const graphs = require('./graphs.jpg');
 export const comparisons = require('./comparisons.jpg');
+export const diary = require('./diaryIcon.png')
+export const graph = require('./e.png')
+export const task = require('./diaryIcon.png')
+export const goal = require('./goal.png')
