@@ -1,1 +1,16 @@
 export const logo = require('./logo.png');
+export const logo2 = require('./logo2.png');
+export const goals = require('./goals.jpg');
+export const lists = require('./lists.jpg');
+export const graphs = require('./graphs.jpg');
+export const comparisons = require('./comparisons.jpg');
+export const diary = require('./diaryIcon.png')
+export const graph = require('./e.png')
+export const task = require('./diaryIcon.png')
+export const goal = require('./goal.png')
+export const redux = require('./Redux.png')
+export const mdb = require('./mdb.png')
+export const mysql = require('./mysql.png')
+export const nodejs = require('./nodejs.png')
+export const express = require('./express-js-png.png')
+export const tasks = require('./taskss.png')

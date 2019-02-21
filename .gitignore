@@ -4,6 +4,7 @@
 
 # Folder ignored
 node_modules/
+backend/node_modules/
 build/
 .cache/
 public/

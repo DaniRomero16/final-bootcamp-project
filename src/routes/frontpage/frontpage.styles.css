@@ -1,0 +1,29 @@
+.diaryl {
+  width: 245px;
+  height: auto;
+}
+
+.diaryr {
+  width: 245px;
+  height: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .diary {}
+}
+
+
+.blockquotel {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  border-left: 3px solid #ffbb33 !important;
+}
+
+
+.blockquoter {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  border-right: 3px solid #02f4d0 !important;
+}
