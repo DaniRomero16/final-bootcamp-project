@@ -103,8 +103,8 @@ class Comparisons extends PureComponent {
                   </MDBView>
                   <MDBCardBody>
                     <MDBCardText>
-                      Some quick example text to build on the card title and make up the bulk of the
-                      card&apos;s content.
+                      Comparisons are hateful, but with this tool they will turn easy to make. Start
+                      now! <MDBIcon icon="long-arrow-alt-down" />
                     </MDBCardText>
                     <MDBBtn
                       color="elegant"

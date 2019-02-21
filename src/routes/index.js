@@ -9,3 +9,6 @@ export * from './login';
 
 // Profile
 export * from './profile';
+
+// Contact
+export * from './contact';

@@ -85,12 +85,7 @@ class NavBar extends Component {
                   </MDBNavItem>
                 </React.Fragment>
               ) : null}
-              <MDBNavItem>
-                <MDBNavLink className="waves-effect waves-light" to="#!">
-                  <MDBIcon icon="envelope" className="mr-1" />
-                  Contact
-                </MDBNavLink>
-              </MDBNavItem>
+
               <MDBNavItem>
                 {!this.props.logged ? (
                   <MDBNavLink className="waves-effect waves-light" to="/login">

@@ -98,8 +98,9 @@ class Graphics extends Component {
                   </MDBView>
                   <MDBCardBody>
                     <MDBCardText>
-                      Some quick example text to build on the card title and make up the bulk of the
-                      card&apos;s content.
+                      Track your projects, plans, and hopes course. And find the motivation you are
+                      lacking of by clicking the button below.{' '}
+                      <MDBIcon icon="long-arrow-alt-down" />
                     </MDBCardText>
                     <MDBBtn
                       color="elegant"

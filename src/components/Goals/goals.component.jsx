@@ -92,8 +92,9 @@ class Goals extends PureComponent {
                   </MDBView>
                   <MDBCardBody>
                     <MDBCardText>
-                      Some quick example text to build on the card title and make up the bulk of the
-                      card&apos;s content.
+                      Here you will be able to arrange all of your goals, ambitions and future
+                      plans. Start now by clicking the button below.{' '}
+                      <MDBIcon icon="long-arrow-alt-down" />
                     </MDBCardText>
                     <MDBBtn
                       color="elegant"

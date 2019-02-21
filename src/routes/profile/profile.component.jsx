@@ -7,24 +7,13 @@ import {
   MDBRow,
   MDBCol,
   MDBCard,
-  MDBCardImage,
   MDBCardBody,
-  MDBCardTitle,
   MDBCardText,
-  MDBBtn,
-  MDBView,
-  MDBMask,
   MDBCardFooter,
   MDBIcon,
   MDBContainer,
-  MDBBreadcrumb,
-  MDBBreadcrumbItem,
-  MDBFormInline,
   MDBAlert,
   MDBCardHeader,
-  MDBListGroupItem,
-  MDBBadge,
-  MDBListGroup,
 } from 'mdbreact';
 import { getGraphics, getComparisons, getGoals, getPosts, getTasks } from '@Models';
 
@@ -48,15 +37,7 @@ class Profile extends Component {
           }
         })
       : [];
-    const TASKS = this.props.tasks
-      ? this.props.tasks.sort(function(a, b) {
-          if (moment(a.date).valueOf() < moment(b.date).valueOf()) {
-            return 1;
-          } else {
-            return -1;
-          }
-        })
-      : [];
+    const TASKS = this.props.tasks ? this.props.tasks.filter(t => t.state === 'progress') : [];
     const GRAPHIC = this.props.graphics ? this.props.graphics : [];
     const GOALS = this.props.goals.sort(function(a, b) {
       if (moment(a.deadline).valueOf() > moment(b.deadline).valueOf()) {
@@ -103,11 +84,35 @@ class Profile extends Component {
             </MDBContainer>
           ) : null}
           <div className={styles.scroll}>
+            <p className="text-white mt-4 h5-responsive">In Progress Tasks</p>
+            <hr className="my-3" />
+            <MDBRow className="my-4" start>
+              {TASKS.map((t, ind) => {
+                if (ind < 4) {
+                  return (
+                    <MDBCol sm="12" md="6" lg="3">
+                      <MDBCard color={t.color} text="white" className="text-center z-depth-2 my-2">
+                        <MDBCardBody className="h4-responsive">{t.name}</MDBCardBody>
+                        <MDBCardText className="white-text" small muted>
+                          Last updated{' '}
+                          {moment(t.date)
+                            .startOf('minute')
+                            .fromNow()}
+                        </MDBCardText>
+                      </MDBCard>
+                    </MDBCol>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </MDBRow>
+
             <MDBRow>
               <MDBCol lg="6" md="12">
-                <p className="text-white h5-responsive">Soon Goals</p>
+                <p className="text-white mt-3 h5-responsive">Soon Goals</p>
                 <hr className="my-3" />
-                <MDBRow className="mb-4">
+                <MDBRow className="my-3">
                   {GOALS.map((g, ind) => {
                     if (ind < 2) {
                       return (
@@ -151,9 +156,9 @@ class Profile extends Component {
                 </MDBRow>
               </MDBCol>
               <MDBCol lg="6" md="12">
-                <p className="text-white h5-responsive">Recent Posts</p>
+                <p className="text-white mt-3 h5-responsive">Recent Posts</p>
                 <hr className="my-3" />
-                <MDBRow>
+                <MDBRow className="my-2">
                   {POSTS.map((p, ind) => {
                     if (ind < 2) {
                       return (
@@ -184,7 +189,7 @@ class Profile extends Component {
               </MDBCol>
             </MDBRow>
 
-            <p className="text-white h5-responsive">Your Graphics</p>
+            <p className="text-white mt-4 h5-responsive">Your Graphics</p>
             <hr className="my-3" />
             <MDBRow className="my-3" around>
               {GRAPHIC[0] ? (

@@ -12,7 +12,7 @@ import {
   ConnectedGraphics,
   ConnectedLists,
 } from '@Components';
-import { FrontPage, ConnectedLogin, ConnectedProfile } from '@Routes';
+import { FrontPage, ConnectedLogin, ConnectedProfile, Contact } from '@Routes';
 import PrivateRoute from './privateroute';
 
 // Import local resources
@@ -31,6 +31,7 @@ export class Router extends Component {
           <React.Fragment>
             <ConnectedNavBar />
             <Route exact path="/" component={FrontPage} />
+            <Route exact path="/contact" component={Contact} />
             <Route exact path="/login" component={ConnectedLogin} />
             <Switch>
               <PrivateRoute path="/profile" component={ConnectedProfile} />
