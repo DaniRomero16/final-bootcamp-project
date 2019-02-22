@@ -86,11 +86,7 @@ CREATE TABLE task (
 
 
 use mindnote;
-alter table task
-drop column color;
-ALTER TABLE task
-add COLUMN date timestamp default current_timestamp ;
-insert into task (user_id,state, name) values (1,'completed','comp');
+
 select * from user;
 select * from post;
 select * from goal;

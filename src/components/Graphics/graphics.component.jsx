@@ -115,7 +115,7 @@ class Graphics extends Component {
                   </MDBCardBody>
                 </MDBCard>
               </MDBCol>
-              <MDBCol sm="12" md="8">
+              <MDBCol className={styles.scroll} sm="12" md="8">
                 {graph.map(c => (
                   <Graphic
                     key={c.graphic_id}
